@@ -4,4 +4,4 @@ Free Mentors is a social initiative where accomplished professionals become role
 <br>
 Remember :coffee:   :pizza:  and :dancer:   When You Are Coding
 
-Let jump to the (feature branch) as recommanded in instruction to try our best on Free_Mentors App Lol !!
+Let jump Above to the branch (feature branch) as recommanded in instruction to try_out our best on product (Free_Mentors App) Lol !!
