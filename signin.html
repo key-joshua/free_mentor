@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Free Mentors Application | Signin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <meta name="description" content="Free Mentors is a social initiative where accomplished professionals become role 
+    models to young people to provide free mentorship sessions. - Andela Developer Challenge">
+    <meta name="author" content="Josue BYIRINGIRO">
+    <link rel="stylesheet" href="css/signin.css">
+
+</head>
+
+
+<body>
+
+
+
+
+	<div class="header1" ><h2>Welcome To Free Mentors Application</h2></div>
+
+	<div class="header" ><h2>Sign_In</h2></div>
+	
+
+
+
+
+
+
+	<div class="input-group">
+
+
+
+		<label>Email</label><br><br>
+		<input type="email" id="email"  >
+
+
+		<label>Password</label>
+		<input type="Password" id="pas"  >
+
+		 <br><br>
+    <select name="category" id="category" onchange="show('users','mentors','admin', this)" required="">
+    	<option value="">Category</option>
+    	<option value="users">Users</option>
+    	<option value="mentors">Mentors </option>
+    	<option value="admin">Admin</option>
+    </select>
+    <br><br>
+
+
+		<button id="user" class="signins" >Sign_In</button>
+		<button id="mentor" class="signins" >Sign_In</button>
+		<button id="admins" class="signins">Sign_In</button>
+
+
+Don't have account ? &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a onclick="return confirm('Are you sure!! you want to Sing_up')" href="signup.html" class="now" style=""  >Sing_Up</a>
+
+		<div id="result">               </div>
+
+
+
+	</div>
+
+<script src="script/valid_in.js"></script>
+</body>
+</html>
