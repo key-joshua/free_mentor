@@ -1,4 +1,4 @@
-# Connect GitHub to Pivotal Tracker
+# Connecting GitHub to Pivotal Tracker
 
 ## Description
 
