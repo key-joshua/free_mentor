@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Free Mentors Application | Signup</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <meta name="description" content="Free Mentors is a social initiative where accomplished professionals become role 
+    models to young people to provide free mentorship sessions. - Andela Developer Challenge">
+    <meta name="author" content="Josue BYIRINGIRO">
+    <link rel="stylesheet" href="css/sessions.css">
+
+</head>
+
+
+<body>
+
+	<div class="header" ><h2>Make Session</h2></div>
+	
+
+
+
+
+
+
+	<div class="input-group">
+
+		
+		<label>User Name</label><br>
+		<input type="firstname" id="field1"  >
+
+		<br><label>Email</label><br>
+		<input type="email" id="field2"  >
+
+		<br><label>Expertise</label><br>
+		<select class="selec" name="expertise" id="field3" >
+    	<option value="">...select...</option>  
+    	<option value="others">others </option>	
+    	<option value="cival">Cival Engineer</option>
+    	<option value="design">Software Design</option>
+    	<option value="electrical">Electrical Engineer</option>  
+    	<option value="engineer">Software Engineer </option>
+    	<option value="developer">Software Developer</option>
+    	<option value="mechanical">Mechanical Engineer </option>
+
+        </select>
+
+        <br><label>Mentor Name</label><br>
+		<input type="lastname" id="field4"  ><br>
+
+
+
+
+		<br><label>Session About</label><br>
+		<textarea type="text" id="field5"> </textarea><br>
+
+	
+
+
+		<br><button id="btn" class="signins" >Request</button>
+
+		<button class="signin" onclick="return confirm('Are you sure !! You want to Move ?')" ><a href="home.html">Home</a></button>
+
+		<div id="result">               </div>
+
+
+
+	</div>
+
+
+<script src="script/valid_up.js"></script>
+</body>
+</html>

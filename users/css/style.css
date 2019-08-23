@@ -1,0 +1,285 @@
+*
+{
+  margin: 0px;
+  padding: 0px;
+}
+
+
+
+.header{
+
+  margin: 20px auto 50px;
+  color: #a67474;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+
+
+  
+}
+
+.description{
+  
+  
+ width: 60%;
+  margin: 0px auto;
+  text-align: center;
+  
+}
+
+.descriptions{
+  
+  
+  color: #561717;
+  width: 60%;
+  margin: 0px auto;
+  text-align: center;
+  
+}
+
+
+header a{
+        color: #a67474;
+        text-shadow: 1px 1px 1px goldenrod;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+   header a:hover{  
+          color: #354e03;
+          font-weight: bold;
+        }
+
+
+
+        header#index{
+          text-align: center;
+          padding-bottom: 60px;
+          border: none;
+        }
+
+       
+
+        .topNav .icon {
+          display: none;
+          padding: 14px;
+          color: goldenrod;
+        }
+
+
+.reg{
+  
+  margin: 5px auto 0px;
+  color: white;
+  background-color: #9d9c9c;
+  text-align: center;
+  border-bottom: none;
+  border-radius: 20px 20px 20px 20px;
+  
+}
+
+
+
+.all_mentors{
+
+  
+  width: 43%;
+  margin: 100px auto 10px auto;
+  color: #9c4848;
+  background-image: linear-gradient(135deg, #fdfcfb 0%, #423107 100%);
+  opacity: 0.6;
+  text-align: center;
+  border: 1px solid #B0C4DE;
+  border-bottom: none;
+  border-radius: 20px 20px 0px 0px;
+  padding: 20px;
+} 
+
+.profile{
+
+  
+  width: 43%;
+  margin: 10px auto;
+  color: #9c4848;
+  opacity: 0.6;
+  padding: 20px;
+} 
+
+.about{
+  width: 96%;
+  height:100px;
+  background: #fff
+}
+.status{
+  color: green;
+}
+
+.change{
+  margin-top: 10px;
+  margin-right: 4%;
+  padding: 3px;
+  font-size: 15px;
+  color: white;
+  background: #9c4848;
+  border-radius: 5px;
+  float: right;
+}
+
+.change a{
+  color: #fff;
+  text-decoration: none;
+}
+
+#searching{
+  float: right;
+  margin-right: 50px; 
+  background-color: #aaaea2;
+}
+
+#searchin{
+  height: 20px;
+}
+
+
+.signins{
+  margin-top: 10px;
+  padding: 3px;
+  font-size: 15px;
+  color: white;
+  background-image: linear-gradient(135deg, #fdfcfb 0%, #423107 100%);
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 780px) {
+
+  .description{
+   width: 80%;
+ }
+
+  .all_mentors{
+
+    width: 80%;
+    margin:80px auto 20px;
+    color: #a51f1f;
+  }
+
+.all_mentors{
+  width: 80%;
+  margin:80px auto 20px;
+  color: #a51f1f;
+}
+
+.profile{
+
+  width: 80%;
+  margin: 10px 10px 10px 10px;
+  color: #9c4848;
+  opacity: 0.6;
+  padding: 20px;
+}
+.change{
+  margin-top: 10px;
+  margin-right: 4%;
+  padding: 3px;
+  font-size: 15px;
+  color: white;
+  background: #9c4848;
+  border-radius: 5px;
+  float: right;
+}
+        .signins{
+            margin-top: 10px;
+            padding: 1px;
+            font-size: 10px;
+          }
+
+          #searchin{
+            width: 50%;
+            height: 15px;
+          }
+
+       .topNav a{
+            display: none;
+          }
+
+          .topNav a.icon {
+            float: right;
+            display: block;
+            background: #9d9c9c;
+          }
+          .topNav a:hover {
+            background: #857a7b;
+          }
+          .responsiveNav {
+            position: relative;
+            padding-bottom: 10px;
+          }
+          .responsiveNav a {
+            float: none;
+            display: block;
+            text-align: left;
+            font: 14px;
+          }
+          .responsiveNav a.icon {
+            position: absolute;
+            padding-left: 12px;
+            right: 0;
+            top: 0;
+          }
+        }
+
+        @media screen and (max-width: 550px){
+          .description{
+            width: 80%;
+          }
+
+
+.all_mentors{
+  width: 80%;
+  margin:80px auto 20px;
+  color: #a51f1f;
+}
+
+.profile{
+
+  width: 80%;
+  margin: 10px 10px 10px 10px;
+  color: #9c4848;
+  opacity: 0.6;
+  padding: 20px;
+}
+.change{
+  margin-top: 10px;
+  margin-right: 4%;
+  padding: 3px;
+  font-size: 15px;
+  color: white;
+  background: #9c4848;
+  border-radius: 5px;
+  float: none;
+}
+
+              #searching{
+            float: right;
+            margin-right: 5%;
+            margin-left: 40%;
+          }
+          .signins{
+            margin-top: 10px;
+            padding: 1px;
+            font-size: 10px;
+          }
+
+          #searchin{
+            width: 70%;
+            height: 13px;
+          }
+          
+          .topNav{
+            display: inline-block;
+            float:none;
+            margin-top: 15px;
+          }
+          .topNav a{
+            padding-right: 50px;
+            }
+          }
