@@ -1,0 +1,15 @@
+[
+ 
+    {
+        "id":1,
+        "firstName": "samuel",
+        "lastName": "kayigamba",
+        "email": "k.samuel@gmai.com",
+        "address": "Kigali/Rwanda",
+        "bio": "standup comedy",
+        "occupation": "learner",
+        "expertise": "mechanical",
+        "password": "qwerty",
+        "confirm_password": "qwerty"
+    }
+]
