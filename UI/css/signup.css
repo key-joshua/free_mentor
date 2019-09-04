@@ -2,7 +2,7 @@ body
 {
   
   margin: 0;
-  background: #aaaea2;
+  background-image: url(../image/background.jpg)
 }
 
 
@@ -15,18 +15,18 @@ body
 	border: 1px solid #B0C4DE;
 	border-bottom: none;
 	border-radius: 20px 20px 0px 0px;
-	padding: 10px;
+	padding: 5px;
 }
 
 .header{
-	width: 24%;
+	width: 22%;
 	margin: 10px auto 0px;
 	color: white;background-image: linear-gradient(135deg, #fdfcfb 0%, #423107 100%);
 	text-align: center;
 	border: 1px solid #B0C4DE;
 	border-bottom: none;;
 	border-radius: 20px 20px 0px 0px;
-	padding: 20px;
+	padding: 8px;
 }
 
 .input-group{ 
@@ -35,7 +35,7 @@ body
 
 
 	background-image: linear-gradient(135deg, #fdfcfb 0%, #423107 100%);
-    width: 23.3%;
+    width: 18.3%;
 	margin: auto;
 	padding: 25px;
 	border: 1px solid #B0C4DE;
@@ -82,6 +82,7 @@ body
 	color: #271c02; 
 	font-size: 17px; 
 	border: 10px; 
+	text-decoration: none;
 }
 
 

@@ -2,7 +2,7 @@
 <html>
 <head>
     
-  <title>Free Mentors Application | Requested Sessions Page</title>
+  <title>Free Mentors Application | admins_view_specific_mentors Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
    <meta name="description" content="Free Mentors is a social initiative where accomplished professionals become role 
     models to young people to provide free mentorship sessions. - Andela Developer Challenge">
@@ -13,6 +13,14 @@
 
 <body style="background: #aaaea2;">
 
+<header>
+  <div id="in">
+    <h3>
+      <a   href="home_out.html" >Logout
+      </a>
+    </h3>
+  </div>
+</header>
 
 <div class="header"><h2>Free Mentors</h2></div>
 
@@ -20,16 +28,25 @@
 <div class="container">
     <header id="index"> 
       <nav class="topNav">
+        <h2 >
+          <a class="reg"  style="color: #bf6d6d;" href="admins_view_users.html" >View Users </a>
+        </h2>
+        
+        <h2 >
+          <a class="reg" style="color: #bf6d6d;" href="admins_view_mentors.html" >View Mentors </a>
+        </h2>
 
         <h2 >
-          <a class="reg" onclick="return confirm('Are you sure !! You want Move ?')" style="color: #bf6d6d;" href="admins_home.html" >Home Page </a>
+          <a  class="reg" style="color: #bf6d6d;"  href="admins_view_requested_sessions.html" >View All Mentorship session  </a>
         </h2>
-       
         <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
-
       </nav>
     </header>
   </div>
+
+
+
+
 <div class="description" > 
 
 <h2>
@@ -49,7 +66,7 @@ Try this from table's row "ACTION" </h5>
 </form>
 
   
-  <div class="all_mentors" ><h2>Welcome To All Specific Mentor</h2></div>
+  <div class="all_mentors" ><h2>Welcome To Undefined Mentor</h2></div>
 
 <div class="profile">
     <img src="../image/mentor.png"  >
@@ -59,8 +76,7 @@ Try this from table's row "ACTION" </h5>
 <br>Expertise: 
 <br>
 <button class="change">Make to User</button>
-<button class="change" onclick="return confirm('Are you sure !! You want to Request Sessions ?')" ><a href="admins_request_session.html">Create Session</a></button>
-
+<button style="background: red" class="change">Delete</button>
   
   
 

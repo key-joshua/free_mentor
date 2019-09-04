@@ -40,7 +40,7 @@
             }
             else
             {
-                window.location = "users_home.html";
+                window.location = "users_view_mentors.html";
             }}
             but.addEventListener("click", Sig);
 
@@ -60,7 +60,7 @@
             }
             else
             {
-                window.location = "mentors_home.html";
+                window.location = "mentors_view_sessions.html";
             }}
         butt.addEventListener("click", Sign);
 
@@ -80,7 +80,7 @@
             }
             else
             {
-                window.location = "admins_home.html";
+                window.location = "admins_view_users.html";
             }}
         butto.addEventListener("click", Sign_);
 
