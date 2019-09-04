@@ -64,6 +64,6 @@ var i = document.querySelector("#field1");
             }
             else
             {
-                window.location = "users_home.html";
+                window.location = "users_view_mentors.html";
             }}
         btn.addEventListener("click", Sign_);
