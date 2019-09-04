@@ -2,7 +2,7 @@
 <html>
 <head>
     
-  <title>Free Mentors Application | Mentors Page</title>
+  <title>Free Mentors Application | users_view_mentor Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
    <meta name="description" content="Free Mentors is a social initiative where accomplished professionals become role 
     models to young people to provide free mentorship sessions. - Andela Developer Challenge">
@@ -12,9 +12,8 @@
 </head>
 
 <body style="background: #aaaea2;">
-
-
-<div class="header"><h2>Free Mentors</h2></div>
+<br>
+<br>
 
 
 <div class="container">
@@ -22,15 +21,28 @@
       <nav class="topNav">
 
         <h2 >
-          <a class="reg" onclick="return confirm('Are you sure !! You want Move ?')" style="color: #bf6d6d;" href="users_home.html" >Home Page </a>
+        
+   
+
+         <form method="post" action="" id="searching" >
+
+                <a   href="users_requested_sessions.html" >session</a>  &nbsp&nbsp&nbsp
+        <a  href="home_out.html" >Logout</a>  &nbsp&nbsp&nbsp 
+
+          <input type="text" name="search" id="searchin"><button type="submit" name="search2" class="signins">Search</button>
+         </form>
         </h2>
        
+ 
         <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
 
       </nav>
     </header>
   </div>
-  
+<br><br><br><br>
+<div class="header"><h2>Free Mentors</h2></div>
+
+
    <div class="description" > 
 
 <h2>
@@ -49,8 +61,6 @@ Try this from table's row "ACTION"</h5>
 
 
 
-<form method="post" action="" id="searching" ><input type="text" name="search" id="searchin"><button type="submit" name="search2" class="signins">Search</button>
-</form>
 
 
   
@@ -62,7 +72,8 @@ Try this from table's row "ACTION"</h5>
 <br>Email:
 <br>Occupation: 
 <br>Expertise: 
-<br><button class="change" onclick="return confirm('Are you sure !! You want to Request Sessions ?')" ><a href="users_request_session.html">Create Session</button>
+<br><button class="change" ><a href="users-view_specific_mentors.html">View Mentor</button>
+<button class="change" ><a href="users_request_session.html">Create Session</button>
 
 </div>
 <script src="../script/alls.js"></script>
