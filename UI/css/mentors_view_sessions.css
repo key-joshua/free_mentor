@@ -44,11 +44,26 @@ header a{
         font-size: 17px;
       }
 
-   header a:hover{  
+      header #in{
+        float: left;
+      }
+      header #in h3{
+        top: 1%;
+        margin-left: 90%;
+        position: absolute;
+        }
+
+
+        header #in h3 a{
+          font-size: 20px;
+          text-transform: none;
+          margin-right: 45px
+        }
+
+        header a:hover{  
           color: #354e03;
           font-weight: bold;
         }
-
 
 
         header#index{
