@@ -11,28 +11,22 @@ header a{
         font-size: 17px;
       }
 
-      header #in{
-        float: left;
-      }
-
-
       header #in h2{
         top: 1%;
-        margin-left: 5%;
-        position: absolute;
+        float: right;
         }
       header #in h3{
         top: 1%;
-        margin-left: 80%;
-        position: absolute;
+        float: right;
         }
 
 
 
         header #in h3 a{
-          font-size: 25px;
+          font-size: 20px;
           text-transform: none;
-          margin-right: 45px
+          margin-right: 20px
+
         }
 
         header a:hover{  
