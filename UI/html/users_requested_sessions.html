@@ -2,7 +2,7 @@
 <html>
 <head>
     
-  <title>Free Mentors Application | Requested Session Page</title>
+  <title>Free Mentors Application | users_requested_sessions Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
    <meta name="description" content="Free Mentors is a social initiative where accomplished professionals become role 
     models to young people to provide free mentorship sessions. - Andela Developer Challenge">
@@ -13,22 +13,32 @@
 <body style="background: #aaaea2;">
 
 
-<div class="header"><h2>Free Mentors</h2></div>
-
-
-<div class="container">
+  <div class="container">
     <header id="index"> 
       <nav class="topNav">
 
         <h2 >
-          <a class="reg" onclick="return confirm('Are you sure !! You want Move ?')" style="color: #bf6d6d;" href="users_home.html" >Home Page </a>
+        
+   
+
+         <form method="post" action="" id="searching" >
+
+                <a   href="users_view_mentors.html" >View Mentors</a>  &nbsp&nbsp&nbsp
+        <a  href="home_out.html" >Logout</a>  &nbsp&nbsp&nbsp 
+
+          <input type="text" name="search" id="searchin"><button type="submit" name="search2" class="signins">Search</button>
+         </form>
         </h2>
        
+ 
         <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
 
       </nav>
     </header>
   </div>
+<br><br><br><br>
+<div class="header"><h2>Free Mentors</h2></div>
+
 
 <div class="description" > 
 
@@ -40,9 +50,6 @@ Hey User !! Now you are on requested sessions's page where all requested session
 
 </div>
 
-
-<form method="post" action="" id="searching" ><input type="text" name="search" id="searchin"><button type="submit" name="search2" class="signins">Search</button>
-</form>
 
   
   <div class="all_mentors" >
@@ -60,6 +67,7 @@ Hey User !! Now you are on requested sessions's page where all requested session
 <br>
 <section class="about"></section> 
 <label class="status">Status:</label>
+<br><button class="change" ><a href="users_review.html">Review</button>
 </div>
 
 <script src="../script/alls.js"></script>
