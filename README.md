@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/key-joshua/free_mentors/badge.svg?branch=develop)](https://coveralls.io/github/key-joshua/free_mentors?branch=develop)
+
 # free_mentor
 Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions.
 <br>
