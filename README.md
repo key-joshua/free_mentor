@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/key-joshua/free_mentors.svg?branch=develop)](https://travis-ci.org/key-joshua/free_mentors)
 # free_mentor
 Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions.
 <br>
