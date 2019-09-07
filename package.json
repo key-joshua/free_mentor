@@ -1,11 +1,11 @@
 {
-  "name": "andela",
+  "name": "free_mentors",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha --exec --require @babel/register ./test/test.js",
-    "dev": "nodemon --exec babel-node connection.js",
+    "switch": "nodemon --exec babel-node connection.js",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test | coveralls"
   },
   "keywords": [],

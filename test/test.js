@@ -10,7 +10,7 @@ const router = () => chai.request(app);
 
 
 describe('my Testing suite',()=>{
-    const received_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Njc3NDU3NzksImV4cCI6MTU2NzgzMjE3OX0.wkRBu7bOuyv9uvw-DBskcTaoP8FLpUk-1sMvOZb6QoA';
+    const received_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Njc4NDUzNjEsImV4cCI6MTU2NzkzMTc2MX0.XhQYkONgKtE07So_xErNpV4fwaew6oQzUWCS9nHH2a4';
     
     it('should return all the users',(done)=>{
         router()
@@ -128,7 +128,7 @@ describe('my Testing suite',()=>{
     it('user should signin',(done)=>{
         router()
         .post('/api/v1/auth/signin')
-        .send(testuser[0])
+        .send(testuser[1])
         .end((error,response)=>{
             expect(response).to.have.status(200)
             expect(response.body).to.be.a('object')

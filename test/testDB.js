@@ -1,7 +1,7 @@
 const testuser=
 [
     {
-        category: "user",
+       
         firstName: "joshua",
         lastName: "kayigamba",
         email: "k.joshua899@gmail.com",
@@ -9,6 +9,11 @@ const testuser=
         bio: "Programming",
         occupation: "free-lacer",
         expertise: "I.T",
+        password: "qwerty"
+    },
+    {
+        category: "user",
+        email: "k.joshua899@gmail.com",
         password: "qwerty"
     }
 ];
