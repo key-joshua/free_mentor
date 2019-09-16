@@ -35,7 +35,7 @@
         "application/json"
     ],
     "paths": {
-        "/auth/signup": {
+        "/signup": {
             "post": {
                 "tags": [
                     "Users"
@@ -64,7 +64,7 @@
                 }
             }
         },
-        "/auth/signin": {
+        "/signin": {
             "post": {
                 "tags": [
                     "Users"
