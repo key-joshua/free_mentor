@@ -3,8 +3,8 @@
 # Free Mentors
 Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions.
 <br>
-
-
+Before we get started Remember to take  :coffee:   :pizza:  and :dancer:   When You Are coding, come on men it all about way of to calumn down and relax
+ <br>
 ## Features
 
 - All users  they Landing on Home page of Free Mentors Application.
@@ -40,11 +40,7 @@ Free Mentors is a social initiative where accomplished professionals become role
 - Admin can delete a mentorship review deemed inappropriate.
 - Admin can delete a mentorship sessions deemed inappropriate.
  <br>
-
 ## Visit Free_Mentor UI Templates
-
-Before we get started Remember to take  :coffee:   :pizza:  and :dancer:   When You Are coding, come on men it all about way of to calumn down and relax
- <br>
 
  ## Frontend tools
 
