@@ -1,39 +1,28 @@
-import testuser from './testDB';
-import chai from 'chai';
-import {expect}from 'chai';
+import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
+import testuser from './testDB';
 import app from '../main';
+
 chai.use(chaiHttp);
 const router = () => chai.request(app);
 
 
-describe('my Testing suite',()=>{
-    const received_token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjoxLCJjaG9vc2VfY2F0ZWdvcnlfYXNfZGV0YWlsX3RvX3N0b3JlIjoiYWRtaW4iLCJjaG9vc2VfZmlyc3ROYW1lX2FzX2RldGFpbF90b19zdG9yZSI6Impvc2h1YSIsImNob29zZV9lbWFpbF9hc19kZXRhaWxfdG9fc3RvcmUiOiJrLmpvc2h1YTg1NUBnbWFpbC5jb20iLCJpYXQiOjE1Njg2NDYyOTcsImV4cCI6MjQzMjY0NjI5N30.LKPSUm-Is76EAwoMgAyy7mOCZZPkJQ5GorDryFHYANc`;
+describe('my Testing suite', () => {
+    const mentor_james =`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjoyLCJjaG9vc2VfY2F0ZWdvcnlfYXNfZGV0YWlsX3RvX3N0b3JlIjoibWVudG9yIiwiY2hvb3NlX2ZpcnN0TmFtZV9hc19kZXRhaWxfdG9fc3RvcmUiOiJqYW1lcyIsImNob29zZV9lbWFpbF9hc19kZXRhaWxfdG9fc3RvcmUiOiJ0ZXN0MUBnbWFpbC5jb20iLCJpYXQiOjE1NjkwNzY0MzIsImV4cCI6MTY1NTQ3NjQzMn0.Geb8dkgrI4-r8Mz12up0HV_1eYdb3ALPSmDRo5NJi8M`;
+    const received_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjoxLCJjaG9vc2VfY2F0ZWdvcnlfYXNfZGV0YWlsX3RvX3N0b3JlIjoiYWRtaW4iLCJjaG9vc2VfZmlyc3ROYW1lX2FzX2RldGFpbF90b19zdG9yZSI6Impvc2h1YSIsImNob29zZV9lbWFpbF9hc19kZXRhaWxfdG9fc3RvcmUiOiJrLmpvc2h1YTg1NUBnbWFpbC5jb20iLCJpYXQiOjE1Njg2NDYyOTcsImV4cCI6MjQzMjY0NjI5N30.LKPSUm-Is76EAwoMgAyy7mOCZZPkJQ5GorDryFHYANc';
     const nothing_token =`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Njg1Nzg2MTQsImV4cCI6MTYwNDU3ODYxNH0.eooHuF1n1-ojNdh6yfBb92kPYrR0uIkxz8xKvk6tSc0`;
+    const prank_token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjoxMCwiY2hvb3NlX2NhdGVnb3J5X2FzX2RldGFpbF90b19zdG9yZSI6Im1lbnRvciIsImNob29zZV9maXJzdE5hbWVfYXNfZGV0YWlsX3RvX3N0b3JlIjoiaW5lcyIsImNob29zZV9lbWFpbF9hc19kZXRhaWxfdG9fc3RvcmUiOiJ0ZXN0MTVAZ21haWwuY29tIiwiaWF0IjoxNTY5MTA1MTg2LCJleHAiOjg3OTY5MTA1MTg2fQ.--nRnCKpIXMVKkBye6Gv-MqcsuBxw498ScTQ6IFIoJ8`;
     const empty_amin_token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjo4LCJjaG9vc2VfY2F0ZWdvcnlfYXNfZGV0YWlsX3RvX3N0b3JlIjoiYWRtaW4iLCJjaG9vc2VfZmlyc3ROYW1lX2FzX2RldGFpbF90b19zdG9yZSI6IkVyaWMiLCJjaG9vc2VfZW1haWxfYXNfZGV0YWlsX3RvX3N0b3JlIjoiRWJ1bHVAZ21haWwuY29tIiwiaWF0IjoxNTY4NjIwODU4LCJleHAiOjI0MzI2MjA4NTh9.z5WtuKgSi_GXy0ewTEH_dtmJAQ-hYQayI52OUqSLlH0`; 
-    const admin_token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjo4LCJjaG9vc2VfY2F0ZWdvcnlfYXNfZGV0YWlsX3RvX3N0b3JlIjoiYWRtaW4iLCJjaG9vc2VfZmlyc3ROYW1lX2FzX2RldGFpbF90b19zdG9yZSI6IkVyaWMiLCJjaG9vc2VfZW1haWxfYXNfZGV0YWlsX3RvX3N0b3JlIjoiRWJ1bHVAZ21haWwuY29tIiwiaWF0IjoxNTY4NjE5NjQzLCJleHAiOjI0MzI2MTk2NDN9.C-424U7mfq-owpdOPlQOAAj_zcV3AtBaUcoQRuNFDLs `;
-    const mentor_token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjo1LCJjaG9vc2VfY2F0ZWdvcnlfYXNfZGV0YWlsX3RvX3N0b3JlIjoibWVudG9yIiwiY2hvb3NlX2ZpcnN0TmFtZV9hc19kZXRhaWxfdG9fc3RvcmUiOiJBbmdlIiwiY2hvb3NlX2VtYWlsX2FzX2RldGFpbF90b19zdG9yZSI6InRlc3Q0QGdtYWlsLmNvbSIsImlhdCI6MTU2ODYxOTgyNSwiZXhwIjoyNDMyNjE5ODI1fQ.y2v5hSSXYq87Od2KNZzOPcTetFdCW1zQdRUYRHx4YZ0`;
+    const admin_token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjoxLCJjaG9vc2VfY2F0ZWdvcnlfYXNfZGV0YWlsX3RvX3N0b3JlIjoiYWRtaW4iLCJjaG9vc2VfZmlyc3ROYW1lX2FzX2RldGFpbF90b19zdG9yZSI6Impvc2h1YSIsImNob29zZV9lbWFpbF9hc19kZXRhaWxfdG9fc3RvcmUiOiJrLmpvc2h1YTg1NUBnbWFpbC5jb20iLCJpYXQiOjE1Njg5NjIyNjYsImV4cCI6MTY1NTM2MjI2Nn0.ius0Ldi1YAFeOGxMRSlqmxCHhMvfseztigA2vA6L6J8`;
+    const mentor_token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjo1LCJjaG9vc2VfY2F0ZWdvcnlfYXNfZGV0YWlsX3RvX3N0b3JlIjoibWVudG9yIiwiY2hvb3NlX2ZpcnN0TmFtZV9hc19kZXRhaWxfdG9fc3RvcmUiOiJBbmdlIiwiY2hvb3NlX2VtYWlsX2FzX2RldGFpbF90b19zdG9yZSI6InRlc3Q0QGdtYWlsLmNvbSIsImlhdCI6MTU2OTAxMTU3MywiZXhwIjoxNjU1NDExNTczfQ.HS8W0D7UKtbf5kicq9f28aorNGnss0tJzb6isaXeHhA`; 
     const mentee_token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjo2LCJjaG9vc2VfY2F0ZWdvcnlfYXNfZGV0YWlsX3RvX3N0b3JlIjoibWVudGVlIiwiY2hvb3NlX2ZpcnN0TmFtZV9hc19kZXRhaWxfdG9fc3RvcmUiOiJuZWxseSIsImNob29zZV9lbWFpbF9hc19kZXRhaWxfdG9fc3RvcmUiOiJ0ZXN0NUBnbWFpbC5jb20iLCJpYXQiOjE1Njg2NzUyMDksImV4cCI6MjQzMjY3NTIwOX0.52NlZwa2NWHo-pkyGtc5zahDVfuHYkDBPdTd4naU3qU`;
-    
+    const nothing_mentor_token =`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjo5LCJjaG9vc2VfY2F0ZWdvcnlfYXNfZGV0YWlsX3RvX3N0b3JlIjoibWVudG9yIiwiY2hvb3NlX2ZpcnN0TmFtZV9hc19kZXRhaWxfdG9fc3RvcmUiOiJpbmVzIiwiY2hvb3NlX2VtYWlsX2FzX2RldGFpbF90b19zdG9yZSI6InRlc3QxMEBnbWFpbC5jb20iLCJpYXQiOjE1Njg4OTUwMDYsImV4cCI6MTY1NTI5NTAwNn0.6kgEIC0YHfbYfAyOuejR3DkjWDtwiyLfTQFLKG1SfPg`;
+    const nothing_mentee_token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaG9vc2VfaWRfYXNfZGV0YWlsX3RvX3N0b3JlIjo3LCJjaG9vc2VfY2F0ZWdvcnlfYXNfZGV0YWlsX3RvX3N0b3JlIjoibWVudGVlIiwiY2hvb3NlX2ZpcnN0TmFtZV9hc19kZXRhaWxfdG9fc3RvcmUiOiJRdWVlbiIsImNob29zZV9lbWFpbF9hc19kZXRhaWxfdG9fc3RvcmUiOiJ0ZXN0MTFAZ21haWwuY29tIiwiaWF0IjoxNTY4ODk1MzA5LCJleHAiOjE2NTUyOTUzMDl9.xzA2AxleWBdvMkcInPNUPH07Pp-nVMwRFisCf6pkrp0`;
     it('it should be able to display welcome message for all the users',(done)=>{
         router()
-        .get(`/api/v1/`)
-        .set('Authorization', received_token)
+        .get('/fhhgcvghxydhcty')
         .end((error,response)=>{
             expect(response).to.have.status(200)
-            expect(response.body).to.be.a('object')
-            expect(response.body).to.have.property('message')
-            done(error)
-        })
-    })
-
-    it('users should be able to update  profile',(done)=>{
-        const userId =1;
-        router()
-        .patch(`/api/v1/user/${userId}`)
-        .send(testuser[1])
-        .end((error,response)=>{
-            expect(response).to.have.status(500)
             expect(response.body).to.be.a('object')
             expect(response.body).to.have.property('message')
             done(error)
@@ -389,7 +378,7 @@ describe('my Testing suite',()=>{
     it('mentor should be able to return all session',(done)=>{
         router()
         .get(`/api/v1/session`)
-        .set('Authorization', mentor_token)
+        .set('Authorization', received_token)
         .end((error,response)=>{
             expect(response).to.have.status(200)
             expect(response.body).to.be.a('object')
@@ -752,10 +741,10 @@ describe('my Testing suite',()=>{
 
     
     it('mentee should  be able to post review with token and live sessionId' ,(done)=>{
-        const sessionId =2;
+        const sessionId =1;
         router()
         .post(`/api/v1/sessions/${sessionId}/review`)
-        .set('Authorization', received_token)
+        .set('Authorization', admin_token)
         .send(testuser[4])
         .end((error,response)=>{
             expect(response).to.have.status(200)
@@ -838,10 +827,33 @@ describe('my Testing suite',()=>{
         })
     })
 
+    // it('mentee or mentor should not be able to view his/her session without token to provide menteeId or mentorId ' ,(done)=>{
+    //     router()
+    //     .post(`/api/v1/sessions`)
+    //     .end((error,response)=>{
+    //         expect(response).to.have.status(500)
+    //         expect(response.body).to.be.a('object')
+    //         done(error)
+
+    //     })
+    // })
+
     it('mentee or mentor should not be able to view his/her session without token to provide menteeId or mentorId ' ,(done)=>{
         router()
-        .post(`/api/v1/sessions`)
-        .set('Authorization', received_token)
+        .get(`/api/v1/sessions`)
+        .end((error,response)=>{
+            expect(response).to.have.status(401)
+            expect(response.body).to.be.a('object')
+            done(error)
+
+        })
+    })
+
+
+    it('mentee should not be able to view his/her session without created that session ' ,(done)=>{
+        router()
+        .get(`/api/v1/sessions`)
+        .set('Authorization', nothing_mentee_token)
         .end((error,response)=>{
             expect(response).to.have.status(404)
             expect(response.body).to.be.a('object')
@@ -850,9 +862,10 @@ describe('my Testing suite',()=>{
         })
     })
 
-    it('mentee or mentor should not be able to view his/her session without token to provide menteeId or mentorId ' ,(done)=>{
+    it('mentor should not be able to view his/her session without created that session ' ,(done)=>{
         router()
-        .post(`/api/v1/sessions`)
+        .get(`/api/v1/sessions`)
+        .set('Authorization', nothing_mentor_token)
         .end((error,response)=>{
             expect(response).to.have.status(404)
             expect(response.body).to.be.a('object')
@@ -865,7 +878,7 @@ describe('my Testing suite',()=>{
         const sessionId =1;
         router()
         .patch(`/api/v1/sessions/${sessionId}/accept`)
-        .set('Authorization', empty_amin_token)
+        .set('Authorization', admin_token)
         .send(testuser[14])
         .end((error,response)=>{
             expect(response).to.have.status(200)
@@ -879,7 +892,7 @@ describe('my Testing suite',()=>{
         const sessionId =1;
         router()
         .patch(`/api/v1/sessions/${sessionId}/accept`)
-        .set('Authorization', mentee_token)
+        .set('Authorization', mentor_token)
         .send(testuser[14])
         .end((error,response)=>{
             expect(response).to.have.status(300)
@@ -893,7 +906,7 @@ describe('my Testing suite',()=>{
         const sessionId =1;
         router()
         .patch(`/api/v1/sessions/${sessionId}/accept`)
-        .set('Authorization', received_token)
+        .set('Authorization', admin_token)
         .send(testuser[15])
         .end((error,response)=>{
             expect(response).to.have.status(400)
@@ -907,7 +920,7 @@ describe('my Testing suite',()=>{
         const sessionId = 5;
         router()
         .patch(`/api/v1/sessions/${sessionId}/accept`)
-        .set('Authorization', received_token)
+        .set('Authorization', admin_token)
         .send(testuser[14])
         .end((error,response)=>{
             expect(response).to.have.status(400)
@@ -921,7 +934,7 @@ describe('my Testing suite',()=>{
         const sessionId =2;
         router()
         .patch(`/api/v1/sessions/${sessionId}/accept`)
-        .set('Authorization', received_token)
+        .set('Authorization', admin_token)
         .send(testuser[16])
         .end((error,response)=>{
             expect(response).to.have.status(400)
@@ -960,7 +973,7 @@ describe('my Testing suite',()=>{
         const sessionId =10000;
         router()
         .patch(`/api/v1/sessions/${sessionId}/accept`)
-        .set('Authorization', received_token)
+        .set('Authorization', admin_token)
         .send(testuser[14])
         .end((error,response)=>{
             expect(response).to.have.status(404)
@@ -974,7 +987,7 @@ describe('my Testing suite',()=>{
         const sessionId =4;
         router()
         .patch(`/api/v1/sessions/${sessionId}/reject`)
-        .set('Authorization', received_token)
+        .set('Authorization', admin_token)
         .send(testuser[16])
         .end((error,response)=>{
             expect(response).to.have.status(200)
@@ -988,7 +1001,7 @@ describe('my Testing suite',()=>{
         const sessionId =100000;
         router()
         .patch(`/api/v1/sessions/${sessionId}/reject`)
-        .set('Authorization', received_token)
+        .set('Authorization', admin_token)
         .send(testuser[17])
         .end((error,response)=>{
             expect(response).to.have.status(404)
@@ -1001,7 +1014,7 @@ describe('my Testing suite',()=>{
         const sessionId =1;
         router()
         .patch(`/api/v1/sessions/${sessionId}/reject`)
-        .set('Authorization', received_token)
+        .set('Authorization', admin_token)
         .send(testuser[15])
         .end((error,response)=>{
             expect(response).to.have.status(400)
@@ -1015,7 +1028,7 @@ describe('my Testing suite',()=>{
         const sessionId =100000;
         router()
         .patch(`/api/v1/sessions/${sessionId}/accept`)
-        .set('Authorization', received_token)
+        .set('Authorization', admin_token)
         .send(testuser[17])
         .end((error,response)=>{
             expect(response).to.have.status(404)
@@ -1257,6 +1270,330 @@ describe('my Testing suite',()=>{
         })
     })
 
+    it('mentor should be able to accept the session',(done)=>{
+        const sessionId =1;
+        router()
+        .patch(`/api/v1/sessions/${sessionId}/accepts`)
+        .set('Authorization', mentor_james)
+        .end((error,response)=>{
+            expect(response).to.have.status(200)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('mentor should not be able to accept the session',(done)=>{
+        const sessionId =2;
+        router()
+        .patch(`/api/v1/sessions/${sessionId}/accepts`)
+        .set('Authorization', mentor_james)
+        .end((error,response)=>{
+            expect(response).to.have.status(404)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('mentor should not be able to accept the session',(done)=>{
+        const sessionId =1;
+        router()
+        .patch(`/api/v1/sessions/${sessionId}/accepts`)
+        .set('Authorization', mentee_token)
+        .end((error,response)=>{
+            expect(response).to.have.status(300)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+    
+    it('mentor should not be able to accept the session',(done)=>{
+        const sessionId =4;
+        router()
+        .patch(`/api/v1/sessions/${sessionId}/accepts`)
+        .end((error,response)=>{
+            expect(response).to.have.status(401)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    }) 
+    
+    it('mentor should be able to reject the session',(done)=>{
+        const sessionId =1;
+        router()
+        .patch(`/api/v1/sessions/${sessionId}/rejects`)
+        .set('Authorization', mentor_james)
+        .end((error,response)=>{
+            expect(response).to.have.status(200)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('mentor should not be able to reject the session',(done)=>{
+        const sessionId =2;
+        router()
+        .patch(`/api/v1/sessions/${sessionId}/rejects`)
+        .set('Authorization', mentor_james)
+        .end((error,response)=>{
+            expect(response).to.have.status(404)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('mentor should not be able to reject the session',(done)=>{
+        const sessionId =1;
+        router()
+        .patch(`/api/v1/sessions/${sessionId}/rejects`)
+        .set('Authorization', mentee_token)
+        .end((error,response)=>{
+            expect(response).to.have.status(300)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('mentee should view his session',(done)=>{
+        router()
+        .get(`/api/v1/review`)
+        .set('Authorization', admin_token)
+        .end((error,response)=>{
+            expect(response).to.have.status(200)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('mentee should view his session',(done)=>{
+        router()
+        .get(`/api/v1/review`)
+        .set('Authorization', mentee_token)
+        .end((error,response)=>{
+            expect(response).to.have.status(404)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('mentor should view his session',(done)=>{
+        router()
+        .get(`/api/v1/review`)
+        .set('Authorization', mentor_james)
+        .end((error,response)=>{
+            expect(response).to.have.status(200)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('mentor should not be able to reject the session',(done)=>{
+        const sessionId =1;
+        router()
+        .patch(`/api/v1/sessions/${sessionId}/rejects`)
+        .end((error,response)=>{
+            expect(response).to.have.status(401)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    }) 
+
+    it('mentor should be able to view his/her session' ,(done)=>{
+        const sessionId =1;
+        router()
+        .get(`/api/v1//onesession/${sessionId}`)
+        .set('Authorization', mentor_james)
+        .end((error,response)=>{
+            expect(response).to.have.status(200)
+            expect(response.body).to.be.a('object')
+            done(error)
+
+        })
+    })
+
+    it('mentor should not be able to accept the session',(done)=>{
+        const sessionId =2;
+        router()
+        .patch(`/api/v1/sessions/${sessionId}/rejects`)
+        .set('Authorization', mentor_james)
+        .end((error,response)=>{
+            expect(response).to.have.status(404)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('mentor not should be able to view his/her session' ,(done)=>{
+        const sessionId =2;
+        router()
+        .get(`/api/v1/onesession/${sessionId}`)
+        .end((error,response)=>{
+            expect(response).to.have.status(401)
+            expect(response.body).to.be.a('object')
+            done(error)
+
+        })
+    })
+
+    it('mentee should be able to view his/her session' ,(done)=>{
+        const sessionId =1;
+        router()
+        .get(`/api/v1/onesession/${sessionId}`)
+        .set('Authorization', admin_token)
+        .end((error,response)=>{
+            expect(response).to.have.status(200)
+            expect(response.body).to.be.a('object')
+            done(error)
+
+        })
+    })
+
+    it('mentee not should be able to view his/her session' ,(done)=>{
+        const sessionId =2;
+        router()
+        .get(`/api/v1/onesession/${sessionId}`)
+        .set('Authorization', admin_token)
+        .end((error,response)=>{
+            expect(response).to.have.status(404)
+            expect(response.body).to.be.a('object')
+            done(error)
+
+        })
+    })
+
+    it('mentee not should be able to view his/her session' ,(done)=>{
+        const sessionId =2;
+        router()
+        .get(`/api/v1/onesession/${sessionId}`)
+        .end((error,response)=>{
+            expect(response).to.have.status(401)
+            expect(response.body).to.be.a('object')
+            done(error)
+
+        })
+    })
+    
+    it('user should not change his/her password',(done)=>{
+        router()
+        .patch(`/api/v1/passwords`)
+        .set('Authorization', mentor_james)
+        .send(testuser[30])
+        .end((error,response)=>{
+            expect(response).to.have.status(400)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('user should not change his/her password',(done)=>{
+        router()
+        .patch(`/api/v1/passwords`)
+        .set('Authorization', mentor_james)
+        .send(testuser[12])
+        .end((error,response)=>{
+            expect(response).to.have.status(400)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('user should change his/her password',(done)=>{
+        router()
+        .patch(`/api/v1/passwords`)
+        .set('Authorization', mentor_james)
+        .send(testuser[11])
+        .end((error,response)=>{
+            expect(response).to.have.status(200)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+
+    it('user should not change his/her password',(done)=>{
+        router()
+        .patch(`/api/v1/passwords`)
+        .set('Authorization', mentor_james)
+        .send(testuser[11])
+        .end((error,response)=>{
+            expect(response).to.have.status(400)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('user should not change his/her profile',(done)=>{
+        router()
+        .patch(`/api/v1/user`)
+        .set('Authorization', mentor_james)
+        .send(testuser[1])
+        .end((error,response)=>{
+            expect(response).to.have.status(400)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('user should not change his/her profile',(done)=>{
+        router()
+        .patch(`/api/v1/user`)
+        .set('Authorization', mentor_james)
+        .send(testuser[30])
+        .end((error,response)=>{
+            expect(response).to.have.status(400)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('user should change his/her profile',(done)=>{
+        router()
+        .patch(`/api/v1/user`)
+        .set('Authorization', mentor_james)
+        .send(testuser[11])
+        .end((error,response)=>{
+            expect(response).to.have.status(200)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    it('user should not change his/her profile',(done)=>{
+        router()
+        .patch(`/api/v1/user`)
+        .set('Authorization', mentor_james)
+        .send(testuser[12])
+        .end((error,response)=>{
+            expect(response).to.have.status(400)
+            expect(response.body).to.be.a('object')
+            expect(response.body).to.have.property('message')
+            done(error)
+        })
+    })
+
+    
+
+
+
+    
 
 
 })

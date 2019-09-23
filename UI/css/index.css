@@ -1,0 +1,70 @@
+
+
+        header a:hover{  
+          color: #354e03;
+          font-weight: bold;
+        }
+
+
+        header#index{
+          float: right;
+          margin-right:5%;
+        }
+
+       
+
+        .topNav .icon {
+          display: none;
+          margin-top: 0px;
+          padding: 5px;
+          color: goldenrod;
+        }
+
+
+
+@media screen and (max-width: 700px) {
+
+
+ 
+       .topNav a{
+            display: none;
+          }
+
+          .topNav a.icon {
+            float: left;
+            font-size: 10px;
+            margin-right:25px;
+            display: block;
+            background: #9d9c9c;
+          }
+          .topNav a:hover {
+            background: #857a7b;
+          }
+          .responsiveNav {
+            position: relative;
+          }
+          .responsiveNav a {
+            float: none;
+            display: block;
+            text-align: left;
+            font-size: 12px;
+          }
+          .responsiveNav a.icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+        }
+
+        @media screen and (max-width: 400px){
+
+          
+          .topNav{
+            display: inline-block;
+            float:none;
+            margin-top: 0px;
+          }
+          .topNav a{
+            padding-right: 50px;
+            }
+          }

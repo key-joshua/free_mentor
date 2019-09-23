@@ -8,16 +8,22 @@ header a{
         color: #a67474;
         text-shadow: 1px 1px 1px goldenrod;
         text-decoration: none;
-        font-size: 17px;
       }
+
+      header #in{
+        float: left;
+      }
+
 
       header #in h2{
         top: 1%;
-        float: right;
+        margin-left: 5%;
+        position: absolute;
         }
       header #in h3{
         top: 1%;
-        float: right;
+        margin-left: 80%;
+        position: absolute;
         }
 
 
@@ -25,14 +31,21 @@ header a{
         header #in h3 a{
           font-size: 20px;
           text-transform: none;
-          margin-right: 20px
-
+          margin-right: 45px
         }
 
         header a:hover{  
           color: #354e03;
           font-weight: bold;
         }
+
+        .mynave{
+        position: absolute;
+        top: 1%;
+        margin-left: 80%;"
+        }
+
+
 
 
       #header
