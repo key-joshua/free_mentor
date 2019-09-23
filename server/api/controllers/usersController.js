@@ -58,7 +58,11 @@ signup: (request, response)=> {
       } 
     
       users_DB.push(newUser);
+<<<<<<< Updated upstream
       response.status(201).json({ status: 201, message: `${'Hey !! ' + ' '}${choose_firstName_as_detail_to_store} ` + ' you  successfully created account', data: user_welcome_data_to_display }); 
+=======
+      response.status(201).json({ status: 201, message: `${'Hey ' + ' '}${choose_firstName_as_detail_to_store} !!` + ' you  successfully created account', data: user_welcome_data_to_display }); 
+>>>>>>> Stashed changes
 
         
     
@@ -95,7 +99,11 @@ signin: (request, response)=> {
           const choose_email_as_detail_to_store = check_to_signin_user[index].email;
           const choose_category_as_detail_to_store = check_to_signin_user[index].category;
           const choose_firstName_as_detail_to_store = check_to_signin_user[index].firstName;
+<<<<<<< Updated upstream
           const giventoken = jwt.sign({choose_id_as_detail_to_store,choose_category_as_detail_to_store,choose_firstName_as_detail_to_store,choose_email_as_detail_to_store},process.env.SECRET_KEY,{expiresIn:'24000h'});
+=======
+          const giventoken = jwt.sign({choose_id_as_detail_to_store,choose_category_as_detail_to_store,choose_firstName_as_detail_to_store,choose_email_as_detail_to_store},process.env.SECRET_KEY,{expiresIn:'24000000h'});
+>>>>>>> Stashed changes
           
           const user_welcome_data_to_display=
           {
@@ -121,20 +129,14 @@ signin: (request, response)=> {
       
         
   },
-  
-view_all_users: (request,response)=>{
-  if (users_DB.length === 0) 
-  {
-    return response.status(200).send({status: 200, message:` Hey !! there is no users found `});  
-  }
-  else{
-    return response.status(200).send({status: 200, message:` Hey !! Hope you are retrieving all users `, data: users_DB }); 
-  }
-  
-},
 
-View_all_mentee: (request,response)=>{
-  const sort_mentee = users_DB.filter(({category})=> category === "mentee");
+  view_all_users: (request, response) => {
+    // if (users_DB.length === 0) { return response.status(200).send({ status: 200, message:' Hey !! there is no users found in DataBase ' }); }
+    return response.status(200).send({ status: 200, message: ' Hey !! Hope you are retrieving all users ', data: users_DB });
+  },
+
+  View_all_mentee: (request, response) => {
+    const sort_mentee = users_DB.filter(({ category }) => category === 'mentee' );
 
   if (sort_mentee) {
 const data_to_display=[];
@@ -198,10 +200,10 @@ View_mentee: (request,response)=>{
   }
 },
 
-View_all_mentor: (request,response)=>{
-  const sort_mentors = users_DB.filter(({category})=> category === "mentor");
+  View_all_mentor: (request, response) => {
+    const sort_mentors = users_DB.filter(({ category }) => category === 'mentor');
 
-  if (sort_mentors) {
+    if (sort_mentors) {
 const data_to_display=[];
     for (var x=0; x<sort_mentors.length; x++ ){
     
@@ -220,8 +222,8 @@ const data_to_display=[];
         });         
     }
     return response.status(200).send({status: 200, message:"Hey !! Hope you are retrieving all mentors ***", data:data_to_display});
-  }
-},
+    }
+  },
 
 View_mentor: (request,response)=>{ 
 

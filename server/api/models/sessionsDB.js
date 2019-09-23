@@ -64,10 +64,23 @@ const sessionDB = [
   menteeEmail: 'test3@gmai.com',
   session_created: 'on Sun June  2016 00:00:00 GMT+0200 (Central Africa Time)',
   session_accepted : 'on Fri Jan 21 2017 20:08:32 GMT+0200 (Central Africa Time)',
-  questions: `Hey My name is John am mentee, Hello every one !! my name is nelly... i need some one's here to diferentiate about networks topologies`,
+  questions: `Hey My name is John am mentee, Hello every one !! my name is nelly... i need some one's here to diferentiate about networks topologies`
+},
+{
+  status: 'accepted',
+  sessionId: 6,
+  mentorId: 5,
+  mentorName: 'Ange',
+  menteeId: 1,
+  menteeName: 'joshua',
+  menteeEmail: 'k.joshua855@gmail.com',
+  session_created: 'on Fri May 2019 04:05:00 GMT+0200 (Central Africa Time)',
+  questions: 'Hey My name is joshua am admin, Hello There !! am new in Wordpress... i need some mentorship of using wordpress',
   
 
-}
+},
+
+
   ];
 
   export default sessionDB;

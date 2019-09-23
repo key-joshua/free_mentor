@@ -5,24 +5,16 @@ import jwt from 'jsonwebtoken';
 
 const additionallyController = {
     
-view_all_review :(request,response)=>{
-  if (reviewDB.length != 0){
-    return response.status(200).send({status: 200, message:` Hey !! Hope you are retrieving all review `, data:reviewDB }); 
-  }
-  else{
-    return response.status(404).send({status: 404, message:  `Hey !! there is no review found `}); 
-  }
-     
-  },
 
-review_mentor :(request, response) => {
+  review_mentor :(request, response) => {
   
     const receive_token_from_header = request.headers.authorization;
     const decoded_token_in_the_way_to_obtain_user_details = jwt.verify(receive_token_from_header, process.env.SECRET_KEY);
-    const find_session_by_id = sessionDB.find((session) => session.sessionId === parseInt(request.params.sessionId, 10));
-  
+    // const find_session_by_id = sessionDB.find((session) => session.sessionId === parseInt(request.params.sessionId, 10));
+    const find_session_by_id = sessionDB.find((session) => session.sessionId  === parseInt(request.params.sessionId, 10) && session.menteeId === decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store );
+ 
       if (!find_session_by_id) {
-        return response.status(404).send({ status: 404, message: `Hey ${decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! This session with id ${parseInt(request.params.sessionId, 10)} does not exist` });
+        return response.status(404).send({ status: 404, message: `Hey ${decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! you can't review without having session with this Mentor ` });
     }
 
 
@@ -68,7 +60,78 @@ review_mentor :(request, response) => {
         }  
       }
     }
-  },
+    },
+  
+  view_all_review :(request,response)=>{
+    if (reviewDB.length != 0){
+      return response.status(200).send({status: 200, message:` Hey !! Hope you are retrieving all review `, data:reviewDB }); 
+    }
+    else{
+      return response.status(404).send({status: 404, message:  `Hey !! there is no review found `}); 
+    }
+       
+    },
+
+  view_review :(request, response) => {
+  
+      const receive_token_from_header = request.headers.authorization;
+      const decoded_token_in_the_way_to_obtain_user_details = jwt.verify(receive_token_from_header, process.env.SECRET_KEY);
+      const find_review_by_id = reviewDB.find((session) => session.menteeId === decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store || session.mentorId === decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store);
+      
+   
+        if (!find_review_by_id) {
+          return response.status(404).send({ status: 404, message: `Hey ${decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! you trying to view a review you ate belong on it ` });
+      }
+  
+  
+      
+          else if (find_review_by_id) 
+          {
+            const sort_mentor_review = reviewDB.filter(({mentorId})=> mentorId ===  decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store);
+            const sort_mentee_review = reviewDB.filter(({menteeId})=> menteeId ===  decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store);
+
+            if (sort_mentor_review != 0) {
+
+               const data_to_display=[];
+               for (var index = 0; index < sort_mentor_review.length; index++ ){
+                 
+                data_to_display.push( {
+                  reviewId : sort_mentor_review[index].reviewId,
+                  sessionId : sort_mentor_review[index].sessionId,
+                  mentorId : sort_mentor_review[index].mentorId,
+                  mentorName : sort_mentor_review[index].mentorName,
+                  menteeId : sort_mentor_review[index].menteeId,
+                  menteeName : sort_mentor_review[index].menteeName,
+                  score :  sort_mentor_review[index].score,
+                  remark :  sort_mentor_review[index].remark,
+                  review_created : sort_mentor_review[index].review_created,
+       });       
+      }
+       return response.status(200).send({status: 200, message:` Hey Mentor ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! you are successfully viewed this review `, data:data_to_display });
+        }
+        
+        else if (sort_mentee_review) {
+          const data_to_display=[];
+          for (var index = 0; index < sort_mentee_review.length; index++ ){
+          
+            data_to_display.push( {
+              reviewId : sort_mentee_review[index].reviewId,
+              sessionId : sort_mentee_review[index].sessionId,
+              mentorId : sort_mentee_review[index].mentorId,
+              mentorName : sort_mentee_review[index].mentorName,
+              menteeId : sort_mentee_review[index].menteeId,
+              menteeName : sort_mentee_review[index].menteeName,
+              score :  sort_mentee_review[index].score,
+              remark :  sort_mentee_review[index].remark,
+              review_created : sort_mentee_review[index].review_created,
+    
+              
+            });         
+          }
+          return response.status(200).send({status: 200, message:` Hey Mentee ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! Hope you are retrieving all your Sessions `, data:data_to_display });
+        }
+      }
+    },
 
 delete_review :(request, response) => {
   
@@ -222,6 +285,109 @@ update_password :(request, response) => {
       else if (find_user_by_id) 
       {
         const sort__user_as_oject_from_usersDB_where_is_stored_in_array = users_DB.filter(({id})=> id ===  parseInt(request.params.userId, 10));
+    
+        if (sort__user_as_oject_from_usersDB_where_is_stored_in_array.length != 0) {
+  
+          const index = 0;
+          const created_at = new Date();
+
+            const update_passwords = {
+            id : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].id,
+            category : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].category,
+            firstName :sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].firstName,
+            lastName : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].lastName,
+            email : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].email,
+            address : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].address,
+            bio : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].bio,
+            occupation : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].occupation,
+            expertise : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].expertise,
+            password : request.body.password ,
+            confirm_password: request.body.confirm_password,
+            account_created : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].account_created,
+            account_edited : `on ${created_at}`,
+          }
+
+
+      if (!request.body.password) {
+        return response.status(400).send({ status: 400, message: `Hey ${sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].category}  ${sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].firstName} !! Insert new password you want` });
+      }
+      else if ( sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].password != request.body.confirm_password ) {
+        return response.status(400).send({ status: 400, message: `Hey ${sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].category}  ${sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].firstName}  !! The old password is incorrect` });
+      }
+
+      else if (request.body.confirm_password === request.body.password) {
+        return response.status(400).send({ status: 400, message: `Hey ${sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].category}  ${sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].firstName}  !! Insert different password you didn't use before` });
+      }
+
+      else
+      {
+            users_DB.splice(get_object_position_you_need_to_delete_by_id_through_index, 1, update_passwords);
+            return response.status(200).send({status: 200, message:` Hey Admin ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! you are successfully changed ${sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].category}  ${sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].firstName}  password` , data:update_passwords });
+        }  
+      }
+    }
+  },
+
+  change_profile :(request, response) => {
+  
+    const receive_token_from_header = request.headers.authorization;
+    const decoded_token_in_the_way_to_obtain_user_details = jwt.verify(receive_token_from_header, process.env.SECRET_KEY);
+    const find_user_by_id = users_DB.find((user) => user.id === decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store);
+    const get_object_position_you_need_to_delete_by_id_through_index = users_DB.indexOf(find_user_by_id);
+  
+    if (find_user_by_id) 
+      {
+        const sort__user_as_oject_from_usersDB_where_is_stored_in_array = users_DB.filter(({id})=> id ===  decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store);
+    
+        if (sort__user_as_oject_from_usersDB_where_is_stored_in_array.length != 0) {
+  
+          const index = 0;
+          const created_at = new Date();
+
+            const update_session_from_pending_to_accept = {
+            id : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].id,
+            category : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].category,
+            firstName : request.body.firstName,
+            lastName : request.body.lastName,
+            email : request.body.email,
+            address : request.body.address,
+            bio : request.body.bio,
+            occupation : request.body.occupation,
+            expertise : request.body.expertise,
+            password : request.body.password ,
+            account_created : sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].account_created,
+            account_edited : `on ${created_at}`,
+          }
+
+      const check_renew_email = users_DB.some((el) => el.email === request.body.email &&  request.body.email != sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].email  );
+      if (check_renew_email) {
+        return response.status(400).send({ status: 400, message: `Hey ${decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! This Email ${request.body.email} has already exist `});
+      }
+      else if (!request.body.password ) {
+        return response.status(400).send({ status: 400, message: `Hey  ${decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! Insert password to confirm update` });
+      }
+      else if (sort__user_as_oject_from_usersDB_where_is_stored_in_array[index].password != request.body.password ) {
+        return response.status(400).send({ status: 400, message: `Hey  ${decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! the password you entered is not correct` });
+      }
+      else
+      {
+            users_DB.splice(get_object_position_you_need_to_delete_by_id_through_index, 1, update_session_from_pending_to_accept);
+            return response.status(200).send({status: 200, message:` Hey Admin ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! you are successfully updated your profile` , data:update_session_from_pending_to_accept });
+        }  
+      }
+    }
+  },
+
+  change_password :(request, response) => {
+  
+    const receive_token_from_header = request.headers.authorization;
+    const decoded_token_in_the_way_to_obtain_user_details = jwt.verify(receive_token_from_header, process.env.SECRET_KEY);
+    const find_user_by_id = users_DB.find((user) => user.id === decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store);
+    const get_object_position_you_need_to_delete_by_id_through_index = users_DB.indexOf(find_user_by_id);
+  
+      if (find_user_by_id) 
+      {
+        const sort__user_as_oject_from_usersDB_where_is_stored_in_array = users_DB.filter(({id})=> id ===  decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store);
     
         if (sort__user_as_oject_from_usersDB_where_is_stored_in_array.length != 0) {
   

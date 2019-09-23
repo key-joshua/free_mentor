@@ -3,6 +3,7 @@
 # Free Mentors
 Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions.
 <br>
+<<<<<<< Updated upstream
 Before we get started Remember to take  :coffee:   :pizza:  and :dancer:   When You Are coding, come on men it all about way of to calumn down and relax
  <br>
 ## Features
@@ -13,6 +14,18 @@ Before we get started Remember to take  :coffee:   :pizza:  and :dancer:   When 
 - All Users who sign in can change password.
 - All Users who sign in can update profile.
 
+=======
+
+
+## Features
+
+- All users  they Landing on Home page of Free Mentors Application.
+- All Users can sign up to get free account on Free Mentors Application.
+- All Users who have acoount on Free Mentors Application can sign in.
+- All Users who sign in can change password.
+- All Users who sign in can update profile.
+
+>>>>>>> Stashed changes
 - Mentee can view all mentors.
 - Mentee can view a specific mentor profile.
 - Mentee can create a mentorship session request.
@@ -40,9 +53,18 @@ Before we get started Remember to take  :coffee:   :pizza:  and :dancer:   When 
 - Admin can delete a mentorship review deemed inappropriate.
 - Admin can delete a mentorship sessions deemed inappropriate.
  <br>
+<<<<<<< Updated upstream
  
 ## Visit Free_Mentor UI Templates
 
+=======
+
+## Visit Free_Mentor UI Templates
+
+Before we get started Remember to take  :coffee:   :pizza:  and :dancer:   When You Are coding, come on men it all about way of to calumn down and relax
+ <br>
+
+>>>>>>> Stashed changes
  ## Frontend tools
 
  - HTML
@@ -72,8 +94,13 @@ This, It all about what i have been requested (recommanded) in the instructions 
 |--------|----------------------------------|----------|-------------------------|-----------------------------------|
 | POST   | /signup/                         |  201 OK  | public                  | create an account then get token  |
 | POST   | /signin/                         |  200 OK  | public                  | login to the app then get token   |
+<<<<<<< Updated upstream
 | PATCH  | /user/:userId /                  |  200 OK  | private(user)           | update your profile               |
 | PATCH  | /password/:userId/               |  200 OK  | private(user)           | update your password              |
+=======
+| PATCH  | /user/                           |  200 OK  | private(user)           | update your profile               |
+| PATCH  | /passwords/                      |  200 OK  | private(user)           | update your password              |
+>>>>>>> Stashed changes
 | GET    | /mentors/                        |  200 OK  | public                  | view all mentors                  |
 | GET    | /admins/                         |  200 OK  | private(admin only)     | view all admins                   |
 | GET    | /mentees                         |  200 OK  | public                  | view all mentees                  |
@@ -82,12 +109,21 @@ This, It all about what i have been requested (recommanded) in the instructions 
 | GET    | /sessions/                       |  200 OK  | private(mente & mentor) | view your created session         |
 | POST   | /sessions/:sessionId/review/     |  201 OK  | private(mentee & admin) | create a review                   |
 | GET    | /reviews/                        |  200 OK  | private(user)           | view your created review          |
+<<<<<<< Updated upstream
 | PATCH  | /sessions/:sessionId/accept/     |  200 OK  | private(mentor & admin) | accept created session to you     |
 | PATCH  | /sessions/:sessionId/reject/     |  200 OK  | private(mentor & admin) | reject created session to you     |
 | PATCH  | /users_mentor_or_mentee/:userId/ |  200 OK  | private(admin only)     | change users to other category    |
 | GET    | /review/                         |  200 OK  | private(admin only)     | view all created review           |
 | GET    | /session/                        |  200 OK  | private(admin only)     | view all created sessions         |
 | DELETE | /user/:userId /                  |  200 OK  | private(admin only)     | delete registered user            |
+=======
+| PATCH  | /sessions/:sessionId/accepts/    |  200 OK  | private(mentor & admin) | accept created session to you     |
+| PATCH  | /sessions/:sessionId/rejects/    |  200 OK  | private(mentor & admin) | reject created session to you     |
+| PATCH  | /users_mentor_or_mentee/:userId/ |  200 OK  | private(admin only)     | change users to other category    |
+| GET    | /review/                         |  200 OK  | private(admin only)     | view all created review           |
+| GET    | /session/                        |  200 OK  | private(admin only)     | view all created sessions         |
+| DELETE | /user/                           |  200 OK  | private(admin only)     | delete registered user            |
+>>>>>>> Stashed changes
 | DELETE | /sessions/:sessionId/            |  200 OK  | private(admin only)     | delete created sessions           |
 | DELETE | /sessions/:sessionId/review/     |  200 OK  | private(admin only)     | delete created review             |
 
@@ -107,6 +143,36 @@ Other tools and technologies used in development of this application are;
 - Programming language: [JavaScript(ES6)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/).
 - Text Editor: [VSCode](https://code.visualstudio.com), [Sublime Text](https://www.sublimetext.com/).
 
+<<<<<<< Updated upstream
+=======
+#### Getting Started
+
+1. Clone the github repository [here](https://key-joshua.github.io/free_mentors). 
+2. Kindly read very well the provided swagger documentation
+
+- Clone this project on your machine , by running this command on in your command line or Terminal:
+ ```
+git clone https://key-joshua.github.io/free_mentors.git
+ ```
+ - Install the required dependencies found in package.json by running this command:
+ ```
+npm install
+ ```
+ - And then to start running  this project on your machine , run this command:
+ ```
+npm run server
+ ```
+ - then to run test, run this command:
+ ```
+npm run test
+```
+#### Api Documentation
+
+Get started with Free Mentors Api endpoints swagger documentation locally after clone project [here](http://localhost:2000/api/v1/documentation).
+
+
+
+>>>>>>> Stashed changes
 #### Deployment
 - gh-pages : [Free_Mentors](https://key-joshua.github.io/free_mentors/).
 

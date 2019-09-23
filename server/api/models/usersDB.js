@@ -92,7 +92,7 @@ const users_DB = [
       category: 'mentee',
       firstName: 'Queen',
       lastName: 'kirabo',
-      email: 'test5@gmail.com',
+      email: 'test11@gmail.com',
       address: 'kampala/uganda',
       bio: 'love to dance',
       occupation: 'clubing',
