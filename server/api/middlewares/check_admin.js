@@ -15,7 +15,7 @@ const verfy_admin = (request, response, next)=> {
       }
       else
     {
-      return response.status(300).json({status : 300, message : ` Hy ${decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! This action is available for Admin's only`});
+      return response.status(300).json({status : 300, message : ` Hy ${decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! This action is available for Admins only`});
     }
     }
     catch (error) {

@@ -2,16 +2,16 @@
 <html>
 <head>
     
-  <title>Free Mentors Application | users-view_specific_mentors Page</title>
+  <title>Free Mentors Application | admins_view_specific_mentors Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
    <meta name="description" content="Free Mentors is a social initiative where accomplished professionals become role 
     models to young people to provide free mentorship sessions. - Andela Developer Challenge">
     <meta name="author" content="Josue BYIRINGIRO">
     <link rel="stylesheet" href="../css/style.css">
-  </head>
+
+</head>
 
 <body style="background: #aaaea2;">
-
 
   <div class="container">
     <header id="index"> 
@@ -23,7 +23,9 @@
 
          <form method="post" action="" id="searching" >
 
-                <a   href="users_view_mentors.html" >View Mentors</a>  &nbsp&nbsp&nbsp
+                <a   href="admins_view_users.html" >View Mentee</a>  &nbsp&nbsp&nbsp
+                <a   href="admins_view_mentors.html" >View Mentors</a>  &nbsp&nbsp&nbsp
+                <a   href="admins_view_requested_sessions.html" >sessions</a>  &nbsp&nbsp&nbsp
         <a  href="home_out.html" >Logout</a>  &nbsp&nbsp&nbsp 
 
           <input type="text" name="search" id="searchin"><button type="submit" name="search2" class="signins">Search</button>
@@ -39,41 +41,38 @@
 <br><br><br><br>
 <div class="header"><h2>Free Mentors</h2></div>
 
-
-  <div class="description" > 
+<div class="description" > 
 
 <h2>
 
-Hey Users !! Now you are on Specific Mentor's page where all Specific Mentors placed, Note that you could make all your wishes request to specific mentors for boosting your skills through world of developers on free mentorship sessions.
+Hey Admin !! Now you are on Mentor's page where all Specific Mentors placed please note that you could make all required change to help users boosting their skills through world of developers on free_mentorship sessions.
 
 </h2></div>
 <br>
 <div class="descriptions" style="width: 50%; "> 
-
-<h5>Have you knows that from Table's Specific Mentors below all users could make some wishes about requesting accomplished professional mentors for helping users<br>
+<h5>Have you knows that from Table's Mentors where admin could make some required changes on mentors to help users<br>
 Try this from table's row "ACTION" </h5>
-
 
 </div>
 
   
-  <div class="all_mentors" ><h2>Welcome To Undefined Mentor</h2></div>
+  <div class="all_mentors" ><h2>Welcome To Undefined Admin</h2></div>
 
-  </div>
-
- <div class="profile">
-    <img   src="../image/mentor.jpg"   >
+<div class="profile">
+    <img src="../image/mentor.png"  >
 <br>Name:
 <br>Email:
 <br>Occupation: 
 <br>Expertise: 
-<br><label>About Mentor</label>
 <br>
-<section class="about"></section> 
-<br><button class="change"  ><a href="users_request_session.html">Create Session</button>
+<button class="change">Make to Mentee</button>
+<button class="change">Make to Mentor</button>
+<button style="background: red" class="change">Delete</button>
+  
+  
+
 
 </div>
-
-<script src="../script/all.js"></script>
+<script src="../script/alls.js"></script>
 </body>
 </html>

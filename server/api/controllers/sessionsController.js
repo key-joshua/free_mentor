@@ -79,16 +79,10 @@ create_session : (request, response)=> {
         }
 },
 
-view_all_sessions :(request,response)=>{
-   
-  if (sessionDB.length === 0) 
-  {
-    return response.status(200).send({status: 200, message:` Hey !! there is no session found `});  
-  }
-  else{
-    return response.status(200).send({status: 200, message:` Hey !! Hope you are retrieving all Sessions `, data: sessionDB }); 
-  }
-},
+  view_all_sessions: (request, response) => {
+    // if (sessionDB.length === 0) return response.status(200).send({ status: 200, message: ' Hey !! there is no session found ' });
+    return response.status(200).send({ status: 200, message: ' Hey !! Hope you are retrieving all Sessions ', data: sessionDB });
+  },
 
 view_sessions_by_mentee_or_mentor_by_token_id_info :(request,response)=>{
 
@@ -192,8 +186,8 @@ view_session_by_sessionId :(request,response)=>{
 
           
         });       
-      }
-      return response.status(200).send({status: 200, message:` Hey ${ decoded_token_in_the_way_to_obtain_user_details.choose_category_as_detail_to_store} ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! Hope you are retrieving this Session `, data:data_to_display });
+        return response.status(200).send({status: 200, message:` Hey ${ decoded_token_in_the_way_to_obtain_user_details.choose_category_as_detail_to_store} ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! Hope you are retrieving this Session requested by mentee ${sort_mentor_or_mentee_session[index].menteeName}`, data:data_to_display }); 
+      }   
     }
   }
 },
@@ -202,14 +196,14 @@ view_sessions_of_mentor :(request,response)=>{
 
   const receive_token_from_header = request.headers.authorization;
   const decoded_token_in_the_way_to_obtain_user_details = jwt.verify(receive_token_from_header, process.env.SECRET_KEY);
-  const check_session_of_mentor_or_mentee_by_id = sessionDB.find((session_by_mentor_id) => session_by_mentor_id.mentorId === parseInt(request.params.mentorId, 10));
+  const check_session_of_mentor_by_id = sessionDB.find((session_by_mentor_id) => session_by_mentor_id.mentorId === parseInt(request.params.mentorId, 10));
  
 
-  if (!check_session_of_mentor_or_mentee_by_id) {
+  if (!check_session_of_mentor_by_id) {
     return response.status(404).send({ status: 404, message: `Hey  ${ decoded_token_in_the_way_to_obtain_user_details.choose_category_as_detail_to_store} ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} This Mentor  with this id has not any Session Now !! ` });
   }
 
-  else if (check_session_of_mentor_or_mentee_by_id) 
+  else if (check_session_of_mentor_by_id) 
   {
     const sort_mentor_session = sessionDB.filter(({mentorId})=> mentorId ===  parseInt(request.params.mentorId, 10));
     const find_mentor_who_coresponding_with_this_id_in_usersDB = users_DB.filter(({id})=> id ===  parseInt(request.params.mentorId, 10));
@@ -423,6 +417,163 @@ reject_session :(request, response) => {
 
 
 },
+
+view_one_sessions_by_mentee_or_mentor_by_token_id_info :(request,response)=>{
+
+  const receive_token_from_header = request.headers.authorization;
+  const decoded_token_in_the_way_to_obtain_user_details = jwt.verify(receive_token_from_header, process.env.SECRET_KEY);
+  const check_session_of_mentee_by_id = sessionDB.find((session) => session.sessionId  === parseInt(request.params.sessionId, 10) && session.menteeId === decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store );
+  const check_session_of_mentor_by_id = sessionDB.find((session) => session.sessionId  === parseInt(request.params.sessionId, 10) && session.mentorId === decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store );
+ 
+  if (!check_session_of_mentor_by_id && !check_session_of_mentee_by_id) {
+    return response.status(404).send({ status: 404, message: `Hey ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} the session you are trying to view is not your !! ` });
+ }
+ 
+  else if (check_session_of_mentor_by_id) 
+  {
+    const sort_mentor_session = sessionDB.filter(({sessionId})=> sessionId === parseInt(request.params.sessionId, 10));
+
+
+    if (sort_mentor_session.length != 0) {
+      const data_to_display=[];
+      for (var index = 0; index < sort_mentor_session.length; index++ ){
+      
+        data_to_display.push( {
+             
+          status:sort_mentor_session[index].status,
+          sessionId: sort_mentor_session[index].sessionId,
+          mentorId: sort_mentor_session[index].mentorId,
+          mentorName:  sort_mentor_session[index].mentorName,
+          menteeId:sort_mentor_session[index].menteeId,
+          menteeName: sort_mentor_session[index].menteeName,
+          menteeEmail:sort_mentor_session[index].menteeEmail,
+          session_created:sort_mentor_session[index].session_created,
+          session_accepted : sort_mentor_session[index].session_accepted,
+          session_rejected : sort_mentor_session[index].session_rejected,
+          questions: sort_mentor_session[index].questions,
+
+          
+        });       
+      }
+      return response.status(200).send({status: 200, message:` Hey Mentor ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! Hope you are retrieving all your Sessions `, data:data_to_display });
+    }
+  }
+  
+  
+ 
+  else if (check_session_of_mentee_by_id) 
+  {
+    const sort_mentee_session = sessionDB.filter(({sessionId})=> sessionId === parseInt(request.params.sessionId, 10));
+
+    if (sort_mentee_session.length != 0) {
+      const data_to_display=[];
+      for (var index = 0; index < sort_mentee_session.length; index++ ){
+      
+        data_to_display.push( {
+             
+          status:sort_mentee_session[index].status,
+          sessionId: sort_mentee_session[index].sessionId,
+          mentorId: sort_mentee_session[index].mentorId,
+          mentorName:  sort_mentee_session[index].mentorName,
+          menteeId:sort_mentee_session[index].menteeId,
+          menteeName: sort_mentee_session[index].menteeName,
+          menteeEmail:sort_mentee_session[index].menteeEmail,
+          session_created:sort_mentee_session[index].session_created,
+          session_accepted : sort_mentee_session[index].session_accepted,
+          session_rejected : sort_mentee_session[index].session_rejected,
+          questions: sort_mentee_session[index].questions,
+
+          
+        });         
+      }
+      return response.status(200).send({status: 200, message:` Hey Mentee ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! Hope you are retrieving all your Sessions `, data:data_to_display });
+    }
+  }
+},
+
+accept_sessions :(request, response) => {
+  
+  const receive_token_from_header = request.headers.authorization;
+  const get__positiont_of_object_you_need_to_update_by_id = sessionDB.indexOf(parseInt(request.params.sessionId, 10));
+  const decoded_token_in_the_way_to_obtain_user_details = jwt.verify(receive_token_from_header, process.env.SECRET_KEY);
+  const find_session_by_id = sessionDB.find((session) => session.sessionId  === parseInt(request.params.sessionId, 10) && session.mentorId === decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store );
+ 
+    if (!find_session_by_id) {
+      return response.status(404).send({ status: 404, message: `Hey ${decoded_token_in_the_way_to_obtain_user_details.choose_category_as_detail_to_store} ${decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! This not your session ` });
+    }
+
+    else if (find_session_by_id) 
+    {
+      const sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array = sessionDB.filter(({sessionId})=> sessionId ===  parseInt(request.params.sessionId, 10));
+  
+      if (sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array.length != 0) {
+
+        const index = 0;
+        const keyword = 'accepted';
+        const created_at = new Date();
+        
+          const update_session_from_pending_to_accept = {
+          status : "accepted",
+          sessionId : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].sessionId,
+          mentorId : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].mentorId,
+          mentorName : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].mentorName,
+          menteeId : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].menteeId,
+          menteeName : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].menteeName,
+          menteeEmail : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].menteeEmail,
+          session_created : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].session_created,
+          session_accepted : `on ${created_at}`,
+          questions: sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].questions,
+        }
+       
+          sessionDB.splice(get__positiont_of_object_you_need_to_update_by_id, 1, update_session_from_pending_to_accept);
+          return response.status(200).send({status: 200, message:` Hey ${ decoded_token_in_the_way_to_obtain_user_details.choose_category_as_detail_to_store}  ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! you are successfully accepted this Session `, data:update_session_from_pending_to_accept });
+       
+    }
+  }
+},
+reject_sessions :(request, response) => {
+  
+  const receive_token_from_header = request.headers.authorization;
+  const get__positiont_of_object_you_need_to_update_by_id = sessionDB.indexOf(parseInt(request.params.sessionId, 10));
+  const decoded_token_in_the_way_to_obtain_user_details = jwt.verify(receive_token_from_header, process.env.SECRET_KEY);
+  const find_session_by_id = sessionDB.find((session) => session.sessionId  === parseInt(request.params.sessionId, 10) && session.mentorId === decoded_token_in_the_way_to_obtain_user_details.choose_id_as_detail_to_store );
+ 
+    if (!find_session_by_id) {
+      return response.status(404).send({ status: 404, message: `Hey ${decoded_token_in_the_way_to_obtain_user_details.choose_category_as_detail_to_store} ${decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! This not your session ` });
+    }
+
+    else if (find_session_by_id) 
+    {
+      const sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array = sessionDB.filter(({sessionId})=> sessionId ===  parseInt(request.params.sessionId, 10));
+  
+      if (sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array.length != 0) {
+
+        const index = 0;
+        const created_at = new Date();
+        
+          const update_session_from_pending_to_accept = {
+          status : "rejected",
+          sessionId : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].sessionId,
+          mentorId : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].mentorId,
+          mentorName : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].mentorName,
+          menteeId : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].menteeId,
+          menteeName : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].menteeName,
+          menteeEmail : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].menteeEmail,
+          session_created : sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].session_created,
+          session_accepted : `on ${created_at}`,
+          questions: sort__sessions_as_oject_from_sessionDB_where_is_stored_in_array[index].questions,
+        }
+       
+        
+          sessionDB.splice(get__positiont_of_object_you_need_to_update_by_id, 1, update_session_from_pending_to_accept);
+          return response.status(200).send({status: 400, message:` Hey ${ decoded_token_in_the_way_to_obtain_user_details.choose_firstName_as_detail_to_store} !! you are successfully rejected this Session `, data:update_session_from_pending_to_accept });
+       
+    }
+  }
+},
+
+
+
 
 };
 

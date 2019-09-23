@@ -29,7 +29,7 @@ signup: (request, response)=> {
       const choose_id_as_detail_to_store = users_DB.length + 1;
       const choose_category_as_detail_to_store = newUser.category;
       const choose_firstName_as_detail_to_store = newUser.firstName;
-      const giventoken = jwt.sign({choose_id_as_detail_to_store,choose_category_as_detail_to_store,choose_firstName_as_detail_to_store,choose_email_as_detail_to_store},process.env.SECRET_KEY,{expiresIn : '24h'});
+      const giventoken = jwt.sign({choose_id_as_detail_to_store,choose_category_as_detail_to_store,choose_firstName_as_detail_to_store,choose_email_as_detail_to_store},process.env.SECRET_KEY,{expiresIn : '24000h'});
  
 
       const user_welcome_data_to_display={
@@ -42,23 +42,23 @@ signup: (request, response)=> {
     
       const insert = users_DB.some((el) => el.email === choose_email_as_detail_to_store );
       if (insert) {
-        return response.status(401).send({ status: 401, message: `${'Hey !! This Email' + ' '}${choose_email_as_detail_to_store} ` + 'has already exist' });
+        return response.status(401).json({ status: 401, message: `${'Hey !! This Email' + ' '}${choose_email_as_detail_to_store} ` + 'has already exist' });
       }else if (!choose_firstName_as_detail_to_store) {
-        return response.status(400).send({ status: 400, message: `Hey !! Insert firstname` });
+        return response.status(400).json({ status: 400, message: `Hey !! Insert firstname` });
       }else if (!newUser.lastName) {
-        return response.status(400).send({ status: 400, message: `Hey !! Insert lastname` });
+        return response.status(400).json({ status: 400, message: `Hey !! Insert lastname` });
       } else if (!newUser.email) {
-        return response.status(400).send({ status: 400, message: `Hey !! Insert email` });
+        return response.status(400).json({ status: 400, message: `Hey !! Insert email` });
       } else if (!newUser.expertise) {
-        return response.status(400).send({ status: 400, message: `Hey !! select what expertise` });
+        return response.status(400).json({ status: 400, message: `Hey !! select what expertise` });
       } else if (!newUser.password) {
-        return response.status(400).send({ status: 400, message: `Hey !! Insert password` });
+        return response.status(400).json({ status: 400, message: `Hey !! Insert password` });
       } else if (newUser.password != newUser.confirm_password) {
-        return response.status(400).send({ status: 400, message: `Hey !! Insert same password to confirm password` });
+        return response.status(400).json({ status: 400, message: `Hey !! Insert same password to confirm password` });
       } 
     
       users_DB.push(newUser);
-      response.status(201).send({ status: 201, message: `${'Hey !! ' + ' '}${choose_firstName_as_detail_to_store} ` + ' you  successfully created account', data: user_welcome_data_to_display }); 
+      response.status(201).json({ status: 201, message: `${'Hey ' + ' '}${choose_firstName_as_detail_to_store} !!` + ' you  successfully created account', data: user_welcome_data_to_display }); 
 
         
     
@@ -75,11 +75,11 @@ signin: (request, response)=> {
     const take_user_password = receive_user_data_from_body.password;
 
      if (!take_user_email) {
-        return response.status(400).send({ status: 400, message: `Hey !! Insert Email` });
+        return response.status(400).json({ status: 400, message: `Hey !! Insert Email` });
       } 
 
       else if (!take_user_password) {
-        return response.status(400).send({ status: 400, message: `Hey !! Insert password` });
+        return response.status(400).json({ status: 400, message: `Hey !! Insert password` });
       }
 
       const check_to_signin_user = users_DB.filter(({email, password})=> email === take_user_email && password === take_user_password);
@@ -95,14 +95,14 @@ signin: (request, response)=> {
           const choose_email_as_detail_to_store = check_to_signin_user[index].email;
           const choose_category_as_detail_to_store = check_to_signin_user[index].category;
           const choose_firstName_as_detail_to_store = check_to_signin_user[index].firstName;
-          const giventoken = jwt.sign({choose_id_as_detail_to_store,choose_category_as_detail_to_store,choose_firstName_as_detail_to_store,choose_email_as_detail_to_store},process.env.SECRET_KEY,{expiresIn:'240000h'});
+          const giventoken = jwt.sign({choose_id_as_detail_to_store,choose_category_as_detail_to_store,choose_firstName_as_detail_to_store,choose_email_as_detail_to_store},process.env.SECRET_KEY,{expiresIn:'24000000h'});
           
           const user_welcome_data_to_display=
           {
             token:giventoken,   
           }
 
-          response.status(200).send({
+          response.status(200).json({
             status: 200, 
             message: `Hey ${check_to_signin_user[index].category} ${check_to_signin_user[index].firstName}!! You are logged in successfully `, 
             data:user_welcome_data_to_display
@@ -112,7 +112,7 @@ signin: (request, response)=> {
         }
 
       else{
-        return response.status(400).send({status: 400, message:"Hey !! Wrong account details check your email  and  password "});
+        return response.status(400).json({status: 400, message:"Hey !! Wrong account details check your email  and  password "});
 
       }
     
@@ -121,20 +121,14 @@ signin: (request, response)=> {
       
         
   },
-  
-view_all_users: (request,response)=>{
-  if (users_DB.length === 0) 
-  {
-    return response.status(200).send({status: 200, message:` Hey !! there is no users found `});  
-  }
-  else{
-    return response.status(200).send({status: 200, message:` Hey !! Hope you are retrieving all users `, data: users_DB }); 
-  }
-  
-},
 
-View_all_mentee: (request,response)=>{
-  const sort_mentee = users_DB.filter(({category})=> category === "mentee");
+  view_all_users: (request, response) => {
+    // if (users_DB.length === 0) { return response.status(200).send({ status: 200, message:' Hey !! there is no users found in DataBase ' }); }
+    return response.status(200).send({ status: 200, message: ' Hey !! Hope you are retrieving all users ', data: users_DB });
+  },
+
+  View_all_mentee: (request, response) => {
+    const sort_mentee = users_DB.filter(({ category }) => category === 'mentee' );
 
   if (sort_mentee) {
 const data_to_display=[];
@@ -198,10 +192,10 @@ View_mentee: (request,response)=>{
   }
 },
 
-View_all_mentor: (request,response)=>{
-  const sort_mentors = users_DB.filter(({category})=> category === "mentor");
+  View_all_mentor: (request, response) => {
+    const sort_mentors = users_DB.filter(({ category }) => category === 'mentor');
 
-  if (sort_mentors) {
+    if (sort_mentors) {
 const data_to_display=[];
     for (var x=0; x<sort_mentors.length; x++ ){
     
@@ -220,8 +214,8 @@ const data_to_display=[];
         });         
     }
     return response.status(200).send({status: 200, message:"Hey !! Hope you are retrieving all mentors ***", data:data_to_display});
-  }
-},
+    }
+  },
 
 View_mentor: (request,response)=>{ 
 

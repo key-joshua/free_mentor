@@ -1,115 +1,580 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0.0",
-        "title": "Free-Mentor",
-        "description": "Free Mentors is a social initiative to provide free mentorship sessions.",
-        "license": {
-            "name": "MIT",
-            "url": "https://opensource.org/licenses/MIT"
-        }
-    },
-    "basePath": "/api/v1",
-    "tags": [
-        {
-            "name": "Users",
-            "description": "user registration"
-        },
-        {
-            "name": "Mentors",
-            "description": "Mentor user"
-        },
-        {
-            "name": "Sessions",
-            "description": "Manage sessions"
-        }
-    ],
-    "schemes": [
-        "http",
-        "https"
-    ],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
-    "paths": {
-        "/signup": {
-            "post": {
-                "tags": [
-                    "Users"
-                ],
-                "summary": "create new user",
-                "parameters": [
-                    {
-                        "name": "users",
-                        "in": "body",
-                        "description": "user provide input",
-                        "schema": {
-                        "$ref": "#definitions/signup"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "201": {
-                        "description": "User succesfuly created"
-                    },
-                    "401": {
-                        "description": "Authentication error"
-                    }
-                }
-            }
-        },
-        "/signin": {
-            "post": {
-                "tags": [
-                    "Users"
-                ],
-                "summary": "create new user",
-                "parameters": [
-                    {
-                        "name": "users",
-                        "in": "body",
-                        "description": "user provide input",
-                        "schema": {
-                        "$ref": "#definitions/signup"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "201": {
-                        "description": "User succesfuly created"
-                    },
-                    "401": {
-                        "description": "Authentication error"
-                    }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "signup": {
-            "required": [
-                "email",
-                "password"
-            ],
-            "type": "object",
-            "properties": {
-                "email" : {
-                    "type": "string"
-                },
-                "password": {
-                    "type":"string"
-                }
-            }
-        }
-    }
+  "swagger": "2.0",
+  "info": {
+    "description": "Free Mentors is a social initiative where accomplished professionals become role models to young people to provide free mentorship sessions.",
+    "version": "1.0.0",
+    "title": "Free_Mentors",
+    "termsOfService": "https://github.com/key-joshua/free_mentors/blob/develop/README.md",
+    "contact": { "email": "k.joshua855@gmail.com" }
+  },
 
+  "host": "localhost:2000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Users",
+      "description": " Users endpoints :: All those endpoints are used to the users like to signup, signin, view users, view mentees, view mentors, ..."
+    },
+    {
+      "name": "sessions",
+      "description": "sessions endpoints :: All those endpoints are used by the users like to create sessions, view sessions, accept or reject sessions ..."
+    },
+    {
+      "name": "reviews",
+      "description": "reviews endpoints :: All those endpoints are used by the users like to create reviews, view reviews, delete reviews..."
+    }
+  
+  
+  ],
+  
+  "schemes": ["http","https"],
+  "consumes": ["application/json", "none"],
+  "produces": [ "application/json", "none"],
+  "paths": {
+
+    "/signup": {
+      "post": {
+        "tags": [ "Users"],
+        "summary": "register new user into DB with free mentors  application",
+        "description": "Now by the use of this POST endpoint you can register new user into DataBases hould with free_mentor application and after successfully register you will get token to authenticate to the resources",        
+        "parameters": [ { "in":"body", "name":"body",  "description":"parsing user data to create account as object", "schema": { "$ref": "#definitions/user" }}],
+        "responses": { "201": { "description": " OK : successfully created account into DataBase"}, "400": { "description": " FAIL : something wrong is occure"}}
+      }
+    },
+
+    "/signin": {
+      "post": {
+        "tags": [ "Users"],
+        "summary": "signin user with free mentors  application",
+        "description": "Now by the use of this POST endpoint you can signin user with free_mentor application and after successfully signin he/she will get token to authenticate to the resources",        
+        "parameters": [ { "in":"body", "name":"body",  "description":"parsing user data to signin as object", "schema": { "$ref": "#definitions/user" }}],
+        "responses": { "200": { "description": " OK : successfully logged in"}}
+      
+      }
+    },
+
+    "/users": {
+      "get": {
+        "tags": [ "Users"],
+        "summary": "admin should retrieve all kinds of users from DB with free mentors  application",
+        "description": "Now by the use of this GET endpoint admin can retrieve all kinds users (Mentee, Mentors, Admins) from DataBase with free_mentor application and admin must have token to authenticated to get those resources",
+        "parameters": [ { "in":"header", "name":"Authorization",  "description":"parsing a given token to get authenticated to the resources", "type": "string" }],
+        "responses": { "200": { "description": " OK : successfully retrieved all users from DataBase"}}
+      }
+    },
+
+    "/mentees": {
+      "get": {
+        "tags": [ "Users"],
+        "summary": "any users should retrieve all mentees from DB with free mentors application",
+        "description": "Now by the use of this GET endpoint any user can retrieve all metees from DataBase with free_mentor application and she/he must have token to get authenticated to get those resources",
+        "parameters": [ { "in":"header", "name":"Authorization",  "description":"user must parsing a given token to get authenticated to the resources", "type": "string" }],
+        "responses": { "200": { "description": " OK : successfully retrieved all mentees from DataBase"}}
+      }
+    },
+
+    "/mentors": {
+      "get": {
+        "tags": [ "Users"],
+        "summary": "any users should retrieve all mentors from DB with free mentors application",
+        "description": "Now by the use of this GET endpoint any user can retrieve all metors from DataBase with free_mentor application and she/he must have token to get authenticated to get those resources",
+        "parameters": [ { "in":"header", "name":"Authorization",  "description":"user must parsing a given token to get authenticated to the resources", "type": "string" }],
+        "responses": { "200": { "description": " OK : successfully retrieved all mentees from DataBase"}}
+      }
+    },
+
+    "/admins": {
+      "get": {
+        "tags": [ "Users"],
+        "summary": "any admin should retrieve all admins from DB with free mentors application",
+        "description": "Now by the use of this GET endpoint any admin can retrieve all admins from DataBase with free_mentor application and she/he must have token to get authenticated to get those resources",
+        "parameters": [ { "in":"header", "name":"Authorization",  "description":"user must parsing a given token to get authenticated to the resources", "type": "string" }],
+        "responses": { "200": { "description": " OK : successfully retrieved all admins from DataBase"}}
+      }
+    },
+
+    "/mentees/{menteeId}": {
+      "get": {
+        "tags": [ "Users"],
+        "summary": "any users should view specific mentee from DB with free mentors application",
+        "description": "Now by the use of this GET endpoint any user can view specific mentee from DataBase with free_mentor application and she/he must have token to get authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully view specific mentee from DataBase"}},
+        "parameters": 
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"user must parsing a given token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in": "path",
+            "name": "menteeId", 
+            "type": "integer", 
+            "format": "int32",
+            "description": "user must parsing a menteeId to get mentee details" 
+          }
+        ]       
+      }
+    },
+
+    "/mentors/{mentorId}": {
+      "get": {
+        "tags": [ "Users"],
+        "summary": "any users should view specific mentor from DB with free mentors application",
+        "description": "Now by the use of this GET endpoint any user can view specific mentor from DataBase with free_mentor application and she/he must have token to get authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully view specific mentor from DataBase"}},
+        "parameters": 
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"user must parsing a given token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in": "path",
+            "name": "mentorId", 
+            "type": "integer", 
+            "format": "int32",
+            "description": "user must parsing a menteeId to get mentor details" 
+          }
+        ]        
+      }
+    },
+
+    "/admins/{adminId}": {
+      "get": {
+        "tags": [ "Users"],
+        "summary": "any admin should view specific admin from DB with free mentors application",
+        "description": "Now by the use of this GET endpoint any admin can view specific admin from DataBase with free_mentor application and she/he must have admin token to get authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully view specific admin from DataBase"}},
+        "parameters": 
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"admin must parsing a given admin token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in": "path",
+            "name": "adminId", 
+            "type": "integer", 
+            "format": "int32",
+            "description": "admin must parsing a adminId to get admin details" 
+          }
+        ] 
+      }
+    },
+
+    "/users_mentor_or_mentee/{userId}": {
+      "patch": {
+        "tags": [ "Users"],
+        "summary": "admin should change mentee to mentor with free mentors  application",
+        "description": "Now by the use of this GET endpoint admin should change mentee to mentor with free_mentor application and must have a admin token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully changed mentee to mentor or to admin with free_mentor application"}},
+        "parameters":  
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"admin must parsing a admin token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in": "path",
+            "name": "userId", 
+            "type": "integer", 
+            "format": "int32",
+            "description": "mentor must parsing a sessionId to view and reject requested session to him/her" 
+          },
+          { 
+            "in":"body", 
+            "name":"body",  
+            "description":"input keyword mentor or admin to change that mentee through his/her id",
+            "schema": { "$ref": "#definitions/user" }
+          }
+        ] 
+      }
+    },
+
+    "/passwords": {
+      "patch": {
+        "tags": [ "Users"],
+        "summary": "user should change his/her password with free mentors  application",
+        "description": "Now by the use of this GET endpoint user should change his/her password with free_mentor application and must have a given token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully changed password with free_mentor application"}},
+        "parameters":  
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"user must parsing a given token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in":"body", 
+            "name":"body",  
+            "description":"input your new password and old password to confirm it",
+            "schema": { "$ref": "#definitions/user" }
+          }
+        ] 
+      }
+    },
+
+    "/user": {
+      "patch": {
+        "tags": [ "Users"],
+        "summary": "user should update his/her profile with free mentors  application",
+        "description": "Now by the use of this GET endpoint user should change his/her profile with free_mentor application and must have a given token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully updated profile with free_mentor application"}},
+        "parameters":  
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"user must parsing a given token to get authenticated to the resources", 
+            "type": "string"
+          },
+          { 
+            "in":"body", 
+            "name":"body",  
+            "description":"input your profile details and password to confirm the change",
+            "schema": { "$ref": "#definitions/user" }
+          }
+        ] 
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "/session": {
+      "post": {
+        "tags": [ "sessions"],
+        "summary": "creating a session with specific mentor on free mentors  application",
+        "description": "Now by the use of this POST endpoint you can create a session with specific mentor on free_mentor application and after successfully loggeddin you will get token to authenticate to create resources",        
+       "responses": { "201": { "description": " OK : successfully created account into DataBase"}, "400": { "description": " FAIL : something wrong is occure"}}, 
+       "parameters": 
+       [ 
+        { 
+          "in":"header", 
+          "name":"Authorization",  
+          "description":"admin must parsing a given admin token to get authenticated to the resources", 
+          "type": "string"
+        },
+         { 
+           "in":"body", 
+           "name":"body",  
+           "description":"parsing mentorId and question to create session as object", 
+           "schema": { "$ref": "#definitions/session" }
+          }    
+        ]        
+      }
+    },
+
+    "/session/": {
+      "get": {
+        "tags": [ "sessions"],
+        "summary": "admin should retrieve all requested session of mentees from DB with free mentors  application",
+        "description": "Now by the use of this GET endpoint admin can retrieve all requested sessions of mentees from DataBase with free_mentor application and admin must have admin token to authenticated to get those resources",
+        "parameters": [ { "in":"header", "name":"Authorization",  "description":"parsing a given admin token to get authenticated to the resources", "type": "string" }],
+        "responses": { "200": { "description": " OK : successfully retrieved all requested sessions from DataBase"}}
+      }
+    },
+
+    "/sessions": {
+      "get": {
+        "tags": [ "sessions"],
+        "summary": "mentee or mentor should view his/her sessions against to  him/her with free mentors  application",
+        "description": "Now by the use of this GET endpoint mentee or mentor should view his/her sessions against to  him/her with free_mentor application and must have token to authenticated to get those resources",
+        "parameters": [ { "in":"header", "name":"Authorization",  "description":"parsing a given token to get authenticated to the resources", "type": "string" }],
+        "responses": { "200": { "description": " OK : successfully viewd your sessions  with free_mentor application"}}
+      }
+    },
+    
+    "/onesession/{sessionId}": {
+      "get": {
+        "tags": [ "sessions"],
+        "summary": "admin should view all sessions by it's sessionId with free mentors  application",
+        "description": "Now by the use of this GET endpoint admin should view mentee or mentor's sessions against to  him/her with free_mentor application and must have admin token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully viewd mentee or mentor sessions  with free_mentor application"}},
+        "parameters":  
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"admin must parsing a given admin token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in": "path",
+            "name": "sessionId", 
+            "type": "integer", 
+            "format": "int32",
+            "description": "admin must parsing a sessionId to get mentee's session or mentor's session by it id details" 
+          }
+        ] 
+      }
+    },
+
+    "/sessionsmentor/{mentorId}": {
+      "get": {
+        "tags": [ "sessions"],
+        "summary": "admin should view all sessions of a given mentor  by mentorId with free mentors  application",
+        "description": "Now by the use of this GET endpoint admin should view all sessions of a given mentor  by mentorId with free_mentor application and must have admin token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully viewd sessions of a given mentor  with free_mentor application"}},
+        "parameters":  
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"admin must parsing a given admin token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in": "path",
+            "name": "mentorId", 
+            "type": "integer", 
+            "format": "int32",
+            "description": "admin must parsing a mentorId to get mentor's session by his/her id " 
+          }
+        ] 
+      }
+    },
+
+    "/sessionsmentee/{menteeId}": {
+      "get": {
+        "tags": [ "sessions"],
+        "summary": "admin should view all sessions of a given mentee  by menteeId with free mentors  application",
+        "description": "Now by the use of this GET endpoint admin should view all sessions of a given mentor  by menteeId with free_mentor application and must have admin token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully viewd sessions of a given mentee  with free_mentor application"}},
+        "parameters":  
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"admin must parsing a given admin token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in": "path",
+            "name": "menteeId", 
+            "type": "integer", 
+            "format": "int32",
+            "description": "admin must parsing a menteeId to get mentee's session by his/her id " 
+          }
+        ] 
+      }
+    },
+
+    "/sessions/{sessionId}/accepts": {
+      "patch": {
+        "tags": [ "sessions"],
+        "summary": "mentor should view and accept all requested sessions to him/her of a given mentee  by sessionId with free mentors  application",
+        "description": "Now by the use of this GET endpoint mentor should view and accept all requested sessions to him/her of a given mentee  by sessionId with free_mentor application and must have a given token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully viewd and accept this sessions of a given mentee  with free_mentor application"}},
+        "parameters":  
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"mentor must parsing a given token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in": "path",
+            "name": "sessionId", 
+            "type": "integer", 
+            "format": "int32",
+            "description": "mentor must parsing a sessionId to view and accept requested session to him/her" 
+          }
+        ] 
+      }
+    },
+
+    "/sessions/{sessionId}/rejects": {
+      "patch": {
+        "tags": [ "sessions"],
+        "summary": "mentor should view and reject all requested sessions to him/her of a given mentee  by sessionId with free mentors  application",
+        "description": "Now by the use of this GET endpoint mentor should view and reject all requested sessions to him/her of a given mentee  by sessionId with free_mentor application and must have a given token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully viewd and reject this sessions of a given mentee  with free_mentor application"}},
+        "parameters":  
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"mentor must parsing a given token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in": "path",
+            "name": "sessionId", 
+            "type": "integer", 
+            "format": "int32",
+            "description": "mentor must parsing a sessionId to view and reject requested session to him/her" 
+          }
+        ] 
+      }
+    },
+
+
+
+    
+    "/sessions/{sessionId}/review/": {
+      "post": {
+        "tags": [ "reviews"],
+        "summary": "mentee should review mentor after requested the session by sessionId with free mentors  application",
+        "description": "Now by the use of this GET endpoint mentee should review mentor after requested the session by sessionId with free_mentor application and must have a given token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully reviewed this mentor with free_mentor application"}},
+        "parameters":  
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"mentee must parsing a given token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in": "path",
+            "name": "sessionId", 
+            "type": "integer", 
+            "format": "int32",
+            "description": "mentee must parsing a sessionId to review that requested session to him/her" 
+          },
+          { 
+            "in":"body", 
+            "name":"body",  
+            "description":"input score and remarkto review that mentor through  sessionId"
+          }
+        ] 
+      }
+    },
+
+    "/reviews": {
+      "get": {
+        "tags": [ "reviews"],
+        "summary": "admin should retrieve all reviews of mentee from DB with free mentors  application",
+        "description": "Now by the use of this GET endpoint admin can retrieve all reviews of users from DataBase with free_mentor application and admin must have admin token to authenticated to get those resources",
+        "parameters": [ { "in":"header", "name":"Authorization",  "description":"parsing a given token to get authenticated to the resources", "type": "string" }],
+        "responses": { "200": { "description": " OK : successfully retrieved all users from DataBase"}}
+      }
+    },
+
+    "mentee_or_mentor/reviews": {
+      "get": {
+        "tags": [ "reviews"],
+        "summary": "mentee or mentor should retrieve all his/her reviews from DB with free mentors  application",
+        "description": "Now by the use of this GET endpoint mentee or mentor can retrieve all his/her reviews from DataBase with free_mentor application and must have a given token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully retrieved all your from DataBase"}},
+        "parameters": [ { "in":"header", "name":"Authorization",  "description":"parsing a given token to get authenticated to the resources", "type": "string" }]
+        
+      }
+    },
+
+
+    "mentee_or_mentor/reviews/{reviewId}": {
+      "get": {
+        "tags": [ "reviews"],
+        "summary": "mentee or mentor should retrieve all his/her reviews from DB with free mentors  application",
+        "description": "Now by the use of this GET endpoint mentee or mentor can retrieve a given review by reviewId his/her belong on it from DataBase with free_mentor application and must have a given token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully retrieved your review from DataBase"}},
+        "parameters":
+         [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"parsing a given token to get authenticated to the resources", 
+            "type": "string" 
+          },
+          { 
+            "in":"path", 
+            "name":"reviewId",  
+            "description":"parsing a reviewId to view a given review you belong to", 
+            "type": "string" 
+          }
+        ]        
+      }
+    },
+
+    "/sessions/{sessionId}/review": {
+      "delete": {
+        "tags": [ "reviews"],
+        "summary": "admin should delete anapropriate creted review to a certain mentor after viewing that review created by mentee via sessionId with free mentors  application",
+        "description": "Now by the use of this GET endpoint admin should delete anapropriate creted review to a certain mentor after viewing that review created by mentee via sessionId with free_mentor application and must have a admin token to authenticated to get those resources",
+        "responses": { "200": { "description": " OK : successfully deleted this review to this mentor with free_mentor application"}},
+        "parameters":  
+        [ 
+          { 
+            "in":"header", 
+            "name":"Authorization",  
+            "description":"admin must parsing a admin token to get authenticated to the resources", 
+            "type": "string"
+          }, 
+          { 
+            "in": "path",
+            "name": "sessionId", 
+            "type": "integer", 
+            "format": "int32",
+            "description": "admin must parsing a sessionId belong to that review want to delete that review created" 
+          }
+        ] 
+      }
+    }
+  },
+
+
+
+  "definitions": {
+    "user": 
+    {
+        "type": "object",
+        "required": [ "email","password" ],
+        "properties": 
+        {
+          "category":{"type":"string"},
+          "firstName":{"type":"string"},
+          "lastName":{"type":"string"},
+          "email" : {"type": "string"},
+          "expertise": {"type":"string"},
+          "password": {"type":"string"},
+          "confirm_password": {"type":"string"}
+        }
+    },
+
+    "session": 
+    {
+      "type": "object",
+      "required": [ "mentorId","questions" ],
+      "properties": 
+      {
+        "mentorId":{"type":"integer"},
+        "questions":{"type":"string"}
+      }
+    },
+
+    "review": 
+    {
+      "type": "object",
+      "required": [ "score","remark" ],
+      "properties": 
+      {
+        "score":{"type":"integer"},
+        "remark":{"type":"string"}
+      }
+    }
 }
+  
+}
+
+     
