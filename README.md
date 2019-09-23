@@ -37,8 +37,8 @@ Free Mentors is a social initiative where accomplished professionals become role
 - Admin can view all mentorship sessions.
 - Admin can view all mentorship reviews.
 - Admin can delete a Mentee, Mentor or admin.
-- Admin can delete a mentorship review deemed inappropriate.
-- Admin can delete a mentorship sessions deemed inappropriate.
+- Admin can delete a mentorship review deemed inappropriates.
+- Admin can delete a mentorship sessions deemed inappropriates.
  <br>
 
 ## Visit Free_Mentor UI Templates
