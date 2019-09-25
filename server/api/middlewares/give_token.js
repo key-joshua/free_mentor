@@ -1,12 +1,9 @@
 // import jwt from 'jsonwebtoken';
-// import dotenv from 'dotenv';
-// dotenv.config();
-
-// const provide_token = ()=>
+// const extract_info_from_token = ()=>
 // {
-//     const choose_category_as_detail_to_store = check_to_signin_user[index].category;
-//     const choose_firstName_as_detail_to_store = check_to_signin_user[index].firstName;
-
+//     const receive_token_from_header = request.headers.authorization;
+//     const decoded_token_in_the_way_to_obtain_user_details = jwt.verify(receive_token_from_header, process.env.SECRET_KEY);
+  
 // }
 
-// export default provide_token;
+// export default extract_info_from_token;

@@ -6,23 +6,16 @@
   "scripts": {
     "lint": "eslint",
     "test": "nyc mocha --exit --require @babel/register --require babel-polyfill ./test/*.js",
-    "server": "nodemon --exec babel-node connection.js",
+    "server": "babel-node connection.js",
+    "start": "babel-node connection.js",
+    "start-dev": "nodemon --exec babel-node connection.js",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test | coveralls"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/key-joshua/free_mentors.git"
   },
-  "keywords": [
-    "node", 
-    "express", 
-    "heroku",
-    "lint",
-    "test",
-    "server",
-    "coveralls"
-  ],
-  "author": "",
+  "author": "Key-Joshua",
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.5.5",
@@ -60,7 +53,7 @@
     "eslint-plugin-import": "^2.18.2"
   },
   "engines": {
-    "node": "10.6.0",
-    "npm": "6.1.0"
+    "node": "10.16.3",
+    "npm": "6.9.0"
   }
 }
