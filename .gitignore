@@ -1,7 +1,5 @@
 node_modules/
 .vscode/
 .env
-.nyc_output
 .DS_Store
 package-lock.json
-coverage
