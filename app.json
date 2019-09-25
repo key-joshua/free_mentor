@@ -1,0 +1,7 @@
+{
+  "name": "Start on Heroku: Node.js",
+  "description": "A free_mentors is now ready to be hosted",
+  "repository": "https://github.com/key-joshua/free_mentors.git",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}

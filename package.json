@@ -1,15 +1,27 @@
-{ 
+{
   "name": "free_mentors",
   "version": "1.0.0",
   "description": "Free-Mentors is a relationship in which a more experienced or more knowledgeable person helps to guide a less experienced or less knowledgeable person.",
   "main": "connection.js",
   "scripts": {
-    "lint":"eslint",
+    "lint": "eslint",
     "test": "nyc mocha --exit --require @babel/register --require babel-polyfill ./test/*.js",
     "server": "nodemon --exec babel-node connection.js",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test | coveralls"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/key-joshua/free_mentors.git"
+  },
+  "keywords": [
+    "node", 
+    "express", 
+    "heroku",
+    "lint",
+    "test",
+    "server",
+    "coveralls"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -46,5 +58,9 @@
     "eslint": "^6.4.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2"
+  },
+  "engines": {
+    "node": "10.6.0",
+    "npm": "6.1.0"
   }
 }
