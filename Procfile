@@ -1,1 +1,1 @@
-web:node connection.js
+web:npm server

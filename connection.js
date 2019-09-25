@@ -1,4 +1,4 @@
-const http = require('http');
+import http from'http';
 import app from './main';
 
 const port = 2000;
