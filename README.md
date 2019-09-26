@@ -53,7 +53,7 @@ Before we get started Remember to take  :coffee:   :pizza:  and :dancer:   When 
  - Javascript
 
 #### Get into Free_Mentor UI Template by Visiting Thoses link below
-This, It all about what i have been requested (recommanded) in the instructions to hosting UI Template in github using this gh-pages branch and right now my UI Template Application is Hosted [Free Mentors Application](https://key-joshua.github.io/free_mentors/) and notice this is the V1 api so make sure to put /api/v1/ before any route eg: https://free-mentors-1000.herokuapp.com/api/v1/documentation/.
+This, It all about what i have been requested (recommanded) in the instructions to hosting UI Template in github using this gh-pages branch and right now my UI Template Application is Hosted [Free Mentors Application](https://key-joshua.github.io/free_mentors/) and notice this is the V1 api so make sure to put /api/v1/ before any route eg: https://free-mentors-1000.herokuapp.com/api/v1/documentation/
 
 - [Free Mentors (Mentee side)](https://key-joshua.github.io/free_mentors/)
 - [Free Mentors (Mentor side)](https://key-joshua.github.io/free_mentors/UI/html/mentors_view_sessions.html)
