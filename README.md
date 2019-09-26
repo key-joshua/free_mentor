@@ -53,11 +53,13 @@ Before we get started Remember to take  :coffee:   :pizza:  and :dancer:   When 
  - Javascript
 
 #### Get into Free_Mentor UI Template by Visiting Thoses link below
-This, It all about what i have been requested (recommanded) in the instructions to hosting UI Template in github using this gh-pages branch and right now my UI Template Application is Hosted [Free Mentors Application](https://key-joshua.github.io/free_mentors/)
+This, It all about what i have been requested (recommanded) in the instructions to hosting UI Template in github using this gh-pages branch and right now my UI Template Application is Hosted [Free Mentors Application](https://key-joshua.github.io/free_mentors/) and notice this is the V1 api so make sure to put /api/v1/ before any route eg: https://free-mentors-app.herokuapp.com/api/v1/api-docs.
 
 - [Free Mentors (Mentee side)](https://key-joshua.github.io/free_mentors/)
 - [Free Mentors (Mentor side)](https://key-joshua.github.io/free_mentors/UI/html/mentors_view_sessions.html)
 - [Free Mentors (Admin side)](https://key-joshua.github.io/free_mentors/UI/html/admins_view_users.html)
+- [Api Root Heroku](https://free-mentors-1000.herokuapp.com)
+- [Api Documentation](https://free-mentors-1000.herokuapp.com/api/v1/documentation/)
 
 
 ## Backend tools
@@ -117,7 +119,7 @@ Other tools and technologies used in development of this application are;
 
 - Clone this project on your machine , by running this command on in your command line or Terminal:
  ```
-git clone https://key-joshua.github.io/free_mentors.git
+git clone https://github.com/key-joshua/free_mentors.git
  ```
  - Install the required dependencies found in package.json by running this command:
  ```

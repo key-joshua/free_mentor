@@ -8,7 +8,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 const basePath = '/api/v1';
-const documentationsUrl = 'https://free-mentors-app.herokuapp.com/api/v1/documentation/';
+const documentationsUrl = 'https://free-mentors-1000.herokuapp.com/api/v1/documentation/';
 
 
 app.use(basePath, authapp);
