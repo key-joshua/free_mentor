@@ -141,7 +141,7 @@ Get started with Free Mentors Api endpoints swagger documentation locally after 
 
 #### Deployment
 - gh-pages : [Free_Mentors](https://key-joshua.github.io/free_mentors/).
-
+- heroku : [Free_Mentors](https://free-mentors-1000.herokuapp.com/).
 #### Dedicated: [Andela-Developer-Challenge](https://andela.com/).
 
 #### Develoer: [Key Joshua](https://www.instagram.com/key_joshua/).
