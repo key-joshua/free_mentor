@@ -82,7 +82,7 @@ const testuser=
         status:"accepted"
     },
     {
-        status:"accept"
+        status:"acce"
     },
     {
         status:"rejected"

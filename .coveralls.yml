@@ -1,2 +1,4 @@
 service_name: travis-pro
 repo_token: OuJA6je0TWwMdn8w0ifdd9RiqXlV7WHQi
+service_name: Code Climate
+repo_token: c5ce08bea0411f275ecf7727a4c6b3adbce5519941ccb6810f8bc082e3a372eb

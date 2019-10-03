@@ -15,6 +15,7 @@ create_session : (request, response)=> {
   const find_mentor_by_id = users_DB.find((mentor) => mentor.id === mentorId && mentor.category ==='mentor' );
 
   if (!find_mentor_by_id) {
+   
     return response.status(404).send({ status: 404, message: `Hey!! This Mentor with id ${mentorId} You are Trying to make session with, does not exist in DataBase` });
   }
 

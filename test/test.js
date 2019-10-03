@@ -903,7 +903,7 @@ describe('my Testing suite', () => {
     })
 
     it('mentor should not be able to accept the session without keyword "accepted"',(done)=>{
-        const sessionId =1;
+        const sessionId =1;;
         router()
         .patch(`/api/v1/sessions/${sessionId}/accept`)
         .set('Authorization', admin_token)
@@ -1015,7 +1015,7 @@ describe('my Testing suite', () => {
         router()
         .patch(`/api/v1/sessions/${sessionId}/reject`)
         .set('Authorization', admin_token)
-        .send(testuser[15])
+        .send(testuser[30])
         .end((error,response)=>{
             expect(response).to.have.status(400)
             expect(response.body).to.be.a('object')
